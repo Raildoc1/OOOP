@@ -1,7 +1,8 @@
-#include <fstream>
 #include <iostream>
+#include "WordsParser.h"
 
 using namespace std;
+using namespace WordCounter;
 
 int main(int argc, char **argv) {
 
@@ -24,8 +25,19 @@ int main(int argc, char **argv) {
 
 	#pragma endregion
 
+	WordsParser wordsParser;
+
+	string line;
+
+	while (getline(fin, line)) wordsParser.AddLine(line);
+
+	#pragma region Output
+
+	wordsParser.SetToCSV(wordsParser.MapToSortedSet(), argv[2]);
+
+	#pragma endregion
 
 
 	fin.close();
-
+	return 0;
 }
