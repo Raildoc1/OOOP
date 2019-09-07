@@ -47,9 +47,10 @@ namespace WordCounter {
 		string word = "";
 
 		for (auto x : line) {
-			if (x == ' ' || x == '\n') {
+			if (!((x <= 'Z' && x >= 'A') || (x <= 'z' && x >= 'a') || (x <= '9' && x >= '0'))) {
 				AddWord(word);
 				word = "";
+				cout << x << "\n";
 			} else {
 				word += x;
 			}
