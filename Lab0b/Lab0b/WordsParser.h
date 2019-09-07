@@ -11,7 +11,8 @@ namespace WordCounter {
 
 	using namespace std;
 
-	typedef function<bool(pair < string, pair<int64_t, float>>, pair<string, pair<int64_t, float>>)> Comparator;
+	typedef pair <string, pair<int64_t, float>> TableRow; // Table row contains WORD AMOUNT FREQ
+	typedef function<bool(TableRow, TableRow)> Comparator; // Function to sort rows
 
 	class WordsParser {
 	private:
@@ -30,9 +31,9 @@ namespace WordCounter {
 
 		void AddLine(string line);
 
-		set <pair<string, pair<int64_t, float>>, Comparator> MapToSortedSet();
+		set <TableRow, Comparator> MapToSortedSet();
 
-		void SetToCSV(set <pair<string, pair<int64_t, float>>, Comparator>, string);
+		void SetToCSV(set <TableRow, Comparator>, string);
 	};
 }
 
