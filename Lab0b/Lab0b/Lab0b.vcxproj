@@ -19,12 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WordFreq.h" />
     <ClInclude Include="WordsParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="WordFreq.cpp" />
     <ClCompile Include="WordsParser.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
