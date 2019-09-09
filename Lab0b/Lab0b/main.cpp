@@ -37,7 +37,6 @@ int main(int argc, char **argv) {
 
 	#pragma endregion
 
-
 	fin.close();
 	return 0;
 }
