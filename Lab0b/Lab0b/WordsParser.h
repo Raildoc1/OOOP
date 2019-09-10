@@ -27,7 +27,6 @@ namespace WordCounter {
 		~WordsParser();
 
 		void AddWord(string word);
-		void AddWord(string word, int64_t amount);
 
 		void AddLine(string line);
 
