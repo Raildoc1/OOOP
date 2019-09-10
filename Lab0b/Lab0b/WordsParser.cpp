@@ -64,6 +64,8 @@ namespace WordCounter {
 		for (auto element : set) {
 			output << element.first << ", " << element.second.first << ", " << element.second.second << "\n";
 		}
+
+		output.close();
 	}
 
 	void WordsParser::UpdateFreq() {
