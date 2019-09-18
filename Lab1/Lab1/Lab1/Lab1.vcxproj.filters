@@ -21,9 +21,15 @@
     <ClCompile Include="TritSet.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="TritsBits.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TritSet.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="TritsBits.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

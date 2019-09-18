@@ -1,10 +1,11 @@
 #include "TritSet.h"
 #include <iostream>
+#include <cstring>
 
 namespace tritset {
 
 	// MY OWN MEMCPY FUNCTION (only for unsigned :c)
-	void TritSet::CopyUnsignedArray(const unsigned * source, unsigned ** target, unsigned size) {
+	void CopyUnsignedArray(const unsigned * source, unsigned ** target, unsigned size) {
 		
 		*target = new unsigned[size];
 
@@ -21,6 +22,7 @@ namespace tritset {
 
 		memory = new unsigned[ArraySize];
 
+		memset(memory, 0, ArraySize * sizeof(unsigned));
 	}
 
 	TritSet::TritSet(TritSet & tritSet) {

@@ -1,19 +1,22 @@
 #include "TritSet.h"
+#include "TritsBits.h"
 #include <iostream>
 
 using namespace tritset;
+using namespace tritsBits;
 
 int main() {
 
-	TritSet set1(1);
+	TritSet set1(49);
 
-	//set1.memory[0] = 1;
-	//set1.memory[2] = 16;
-	//set1.memory[4] = 23;
+	TritSet set3 = set1;
 
-	//TritSet set3 = set1;
+	unsigned a = 502357;
 
-	//std::cout << set3.memory[0] << " " << set3.memory[2] << " " << set3.memory[4] << std::endl;
+	if(GetTrit(&a, 7) == F) std::cout << "F" << std::endl;
+	else if (GetTrit(&a, 7) == T) std::cout << "T" << std::endl;
+	else if (GetTrit(&a, 7) == U) std::cout << "U" << std::endl;
+
 
 	return 0;
 }

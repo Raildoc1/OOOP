@@ -116,9 +116,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TritsBits.cpp" />
     <ClCompile Include="TritSet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TritsBits.h" />
     <ClInclude Include="TritSet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
