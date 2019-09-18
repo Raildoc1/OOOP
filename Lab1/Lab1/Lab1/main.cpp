@@ -13,9 +13,9 @@ int main() {
 
 	unsigned a = 502357;
 
-	if(GetTrit(&a, 7) == F) std::cout << "F" << std::endl;
-	else if (GetTrit(&a, 7) == T) std::cout << "T" << std::endl;
-	else if (GetTrit(&a, 7) == U) std::cout << "U" << std::endl;
+	if(GetTrit(&a, 3) == F) std::cout << "F" << std::endl;
+	else if (GetTrit(&a, 3) == T) std::cout << "T" << std::endl;
+	else if (GetTrit(&a, 3) == U) std::cout << "U" << std::endl;
 
 
 	return 0;
