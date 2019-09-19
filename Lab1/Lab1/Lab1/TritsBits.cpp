@@ -13,17 +13,47 @@ namespace tritsBits {
 		return result;
 	}
 
-	tritset::trit GetTrit(unsigned * src, int index) {
+	trit GetTrit(unsigned * src, int index) {
 
 		int bitMask = bpow((sizeof(unsigned) * 8 - 1) - (index * 2));
 
-		if ((bitMask & (*src)) == 0) return tritset::U;
+		if ((bitMask & (*src)) == 0) return U;
 
 		bitMask = bpow((sizeof(unsigned) * 8 - 1) - (index * 2 + 1));
 
-		if ((bitMask & (*src)) == 0) return tritset::F;
+		if ((bitMask & (*src)) == 0) return F;
 
-		return tritset::T;
+		return T;
+	}
+
+	void SetTrit(unsigned * src, int index, trit trit) {
+
+		if (trit == U) {
+
+			unsigned bitMask1 = ~(bpow((sizeof(unsigned) * 8 - 1) - (index * 2)));
+			unsigned bitMask2 = ~bpow((sizeof(unsigned) * 8 - 1) - (index * 2 + 1));
+
+			(*src) &= bitMask1;
+			(*src) &= bitMask2;
+
+		} else if (trit == F) {
+
+			unsigned bitMask1 = bpow((sizeof(unsigned) * 8 - 1) - (index * 2));
+			unsigned bitMask2 = ~bpow((sizeof(unsigned) * 8 - 1) - (index * 2 + 1));
+
+			(*src) |= bitMask1;
+			(*src) &= bitMask2;
+
+		} else {
+
+			unsigned bitMask1 = bpow((sizeof(unsigned) * 8 - 1) - (index * 2));
+			unsigned bitMask2 = bpow((sizeof(unsigned) * 8 - 1) - (index * 2 + 1));
+
+			(*src) |= bitMask1;
+			(*src) |= bitMask2;
+
+		}
+
 	}
 
 }

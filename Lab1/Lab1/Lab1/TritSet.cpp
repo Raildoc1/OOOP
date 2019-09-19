@@ -36,4 +36,28 @@ namespace tritset {
 		delete [] memory;
 	}
 
+	/*tritsBits::trit TritSet::operator[](const unsigned index) const {
+
+		tritsBits::trit temp = tritsBits::GetTrit(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
+
+		if (temp == tritsBits::T) {
+			return tritsBits::T;
+		} else if (temp == tritsBits::F) {
+			return tritsBits::F;
+		}
+
+		return tritsBits::U;
+
+	}*/
+
+	TritSet::ref TritSet::operator[](unsigned index) {
+
+		TritSet::ref * ref = new TritSet::ref(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
+
+		return *ref;
+
+	}
+
+	
+
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include "TritSet.h"
 
 // 00 - U
 // 10 - F
@@ -7,8 +6,11 @@
 
 namespace tritsBits {
 
+	enum trit { T, F, U };
+
 	int bpow(int pow);
 
-	tritset::trit GetTrit(unsigned* src, int index);
+	trit GetTrit(unsigned* src, int index);
+	void SetTrit(unsigned* src, int index, trit trit);
 
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-namespace tritset {
+#include "TritsBits.h"
 
-	enum trit {T, F, U};
+namespace tritset {
 
 	void CopyUnsignedArray(const unsigned * source, unsigned ** target, unsigned size);
 
@@ -17,11 +17,38 @@ namespace tritset {
 
 	public:
 
+		class ref {
+		private:
+			unsigned *cell;
+			unsigned index;
+		public:
+
+			ref(unsigned *cell, unsigned index) : cell(cell), index(index) {}
+			~ref() { delete cell; }
+
+			ref & operator = (tritsBits::trit trit) {
+				tritsBits::SetTrit(cell, index, trit);
+				return *this;
+			}
+
+			const bool operator == (tritsBits::trit trit) {
+
+				if (tritsBits::GetTrit(cell, index) == trit) return true;
+				else return false;
+
+			}
+
+		};
 
 		TritSet(int size);
 		TritSet(TritSet &tritSet);
 
 		~TritSet();
+
+		//tritsBits::trit operator [] (const unsigned index) const;
+		ref operator [] (unsigned index);
+
+		
 	};
 }
 

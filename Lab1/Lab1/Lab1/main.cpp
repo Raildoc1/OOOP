@@ -9,14 +9,13 @@ int main() {
 
 	TritSet set1(49);
 
-	TritSet set3 = set1;
+	SetTrit(set1.memory, 4, T);
 
-	unsigned a = 502357;
+	set1[4] = F;
 
-	if(GetTrit(&a, 3) == F) std::cout << "F" << std::endl;
-	else if (GetTrit(&a, 3) == T) std::cout << "T" << std::endl;
-	else if (GetTrit(&a, 3) == U) std::cout << "U" << std::endl;
-
+	if ((set1[4] == F) == false) {
+		std::cout << "set1[4] == F"<< std::endl;
+	}
 
 	return 0;
 }
