@@ -2,20 +2,21 @@
 #include "TritsBits.h"
 #include <iostream>
 
+//0 - T
+//1 - F
+//2 - U
+
 using namespace tritset;
 using namespace tritsBits;
 
 int main() {
 
-	TritSet set1(49);
-
-	SetTrit(set1.memory, 4, T);
+	TritSet set1(5);
 
 	set1[4] = F;
 
-	if ((set1[4] == F) == false) {
-		std::cout << "set1[4] == F"<< std::endl;
-	}
+	std::cout << (set1[5] == set1[1000]) << std::endl;
+	std::cout << (set1[4] == set1[1000]) << std::endl;
 
 	return 0;
 }

@@ -36,28 +36,33 @@ namespace tritset {
 		delete [] memory;
 	}
 
-	/*tritsBits::trit TritSet::operator[](const unsigned index) const {
+	TritSet::Ref TritSet::operator[](const unsigned index) {
 
-		tritsBits::trit temp = tritsBits::GetTrit(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
+		if (index >= TritsAmount) {
 
-		if (temp == tritsBits::T) {
-			return tritsBits::T;
-		} else if (temp == tritsBits::F) {
-			return tritsBits::F;
+			unsigned * newCell = new unsigned(0);
+
+			TritSet::OutBoundsRef * Ref = new TritSet::OutBoundsRef(newCell, index % (sizeof(unsigned) * 4), index, memory);
+
+			return * Ref;
+
+		} else {
+
+			TritSet::Ref * Ref = new TritSet::Ref(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
+
+			return * Ref;
+
 		}
-
-		return tritsBits::U;
-
-	}*/
-
-	TritSet::ref TritSet::operator[](unsigned index) {
-
-		TritSet::ref * ref = new TritSet::ref(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
-
-		return *ref;
 
 	}
 
+	tritsBits::trit TritSet::operator[](const unsigned index) const {
+
+		tritsBits::trit temp = tritsBits::GetTrit(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
+
+		return temp;
+
+	}
 	
 
 }

@@ -12,32 +12,48 @@ namespace tritset {
 
 		int ArraySize;
 		int TritsAmount;
-	public:
+
 		unsigned *memory;
 
 	public:
 
-		class ref {
-		private:
+		class Ref {
+		protected:
+
 			unsigned *cell;
 			unsigned index;
+
 		public:
 
-			ref(unsigned *cell, unsigned index) : cell(cell), index(index) {}
-			~ref() { delete cell; }
+			Ref(unsigned *cell, unsigned index) : cell(cell), index(index) {}
+			~Ref() { }
 
-			ref & operator = (tritsBits::trit trit) {
+			Ref & operator = (tritsBits::trit trit) {
 				tritsBits::SetTrit(cell, index, trit);
 				return *this;
 			}
 
-			const bool operator == (tritsBits::trit trit) {
-
-				if (tritsBits::GetTrit(cell, index) == trit) return true;
-				else return false;
-
+			operator tritsBits::trit() {
+				return tritsBits::GetTrit(cell, index);
 			}
 
+		};
+
+		class OutBoundsRef : public Ref {
+		private:
+			unsigned globalIndex;
+			unsigned *memory;
+		public:
+			OutBoundsRef(unsigned *cell, unsigned localIndex, unsigned GlobalIndex, unsigned *memory) : Ref(cell, localIndex), globalIndex(GlobalIndex), memory(memory) { }
+			~OutBoundsRef() { 
+			
+				if (*cell != 0) {
+					// Расширить память
+				} else {
+					delete cell;
+				}
+			
+			}
 		};
 
 		TritSet(int size);
@@ -45,9 +61,8 @@ namespace tritset {
 
 		~TritSet();
 
-		//tritsBits::trit operator [] (const unsigned index) const;
-		ref operator [] (unsigned index);
-
+		Ref operator [] (const unsigned index);
+		tritsBits::trit operator [] (const unsigned index) const;
 		
 	};
 }
