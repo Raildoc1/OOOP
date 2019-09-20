@@ -1,6 +1,7 @@
 #pragma once
 
 #include "TritsBits.h"
+#include <iostream>
 
 namespace tritset {
 
@@ -10,10 +11,17 @@ namespace tritset {
 
 	private:
 
-		int ArraySize;
-		int TritsAmount;
+		int defaultArraySize;
+		int defaultTritsAmount;
+
+		int currentArraySize;
+		int currentTritsAmount;
 
 		unsigned *memory;
+
+		void ExpandMemory(int index);
+
+		void SetTrit(int index, tritsBits::trit trit);
 
 	public:
 
@@ -25,8 +33,12 @@ namespace tritset {
 
 		public:
 
-			Ref(unsigned *cell, unsigned index) : cell(cell), index(index) {}
-			~Ref() { }
+			Ref(unsigned *cell, unsigned index) : cell(cell), index(index) {
+				std::cout << "Ref();" << std::endl;
+			}
+			virtual ~Ref() {
+				std::cout << "~Ref();" << std::endl;
+			}
 
 			Ref & operator = (tritsBits::trit trit) {
 				tritsBits::SetTrit(cell, index, trit);
@@ -41,14 +53,21 @@ namespace tritset {
 
 		class OutBoundsRef : public Ref {
 		private:
+
 			unsigned globalIndex;
-			unsigned *memory;
+			TritSet *tritSet;
+
 		public:
-			OutBoundsRef(unsigned *cell, unsigned localIndex, unsigned GlobalIndex, unsigned *memory) : Ref(cell, localIndex), globalIndex(GlobalIndex), memory(memory) { }
-			~OutBoundsRef() { 
+			OutBoundsRef(unsigned *cell, unsigned localIndex, unsigned GlobalIndex, TritSet *tritSet) : Ref(cell, localIndex), globalIndex(GlobalIndex), tritSet(tritSet) {
+				std::cout << "OutBoundsRef();" << std::endl;
+			}
+			~OutBoundsRef() {
 			
+				std::cout << "~OutBoundsRef();" << std::endl;
+
 				if (*cell != 0) {
-					// Расширить память
+					tritSet->ExpandMemory(globalIndex);
+					tritSet->SetTrit(index, tritsBits::GetTrit(cell, index));
 				} else {
 					delete cell;
 				}

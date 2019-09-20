@@ -13,10 +13,9 @@ int main() {
 
 	TritSet set1(5);
 
-	set1[4] = F;
+	set1[1000] = F;
 
-	std::cout << (set1[5] == set1[1000]) << std::endl;
-	std::cout << (set1[4] == set1[1000]) << std::endl;
+	std::cout << set1[1000] << std::endl;
 
 	return 0;
 }

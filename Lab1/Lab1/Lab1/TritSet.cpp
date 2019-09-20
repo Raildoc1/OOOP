@@ -14,21 +14,51 @@ namespace tritset {
 		}
 	}
 
-	TritSet::TritSet(int size) : TritsAmount(size)  {
+	void TritSet::ExpandMemory(int index) {
 	
-		ArraySize = std::ceil(size * 2 / (float)8 / (float)sizeof(unsigned));
+		if (index > currentTritsAmount) currentTritsAmount = index;
 
-		std::cout << "size = " << ArraySize << std::endl;
+		if ((index / (sizeof(unsigned) * 4)) >= currentArraySize) {
 
-		memory = new unsigned[ArraySize];
+			int newArraySize = std::ceil((index + 1) * 2 / (float)8 / (float)sizeof(unsigned));
 
-		memset(memory, 0, ArraySize * sizeof(unsigned));
+			// My own realloc
+			unsigned * temp = new unsigned[newArraySize];
+
+			for (int i = 0; i < currentArraySize; i++) {
+				temp[i] = memory[i];
+			}
+
+			delete[] memory;
+			memory = temp;
+
+			currentArraySize = newArraySize;
+
+		}
+
+	}
+
+	void TritSet::SetTrit(int index, tritsBits::trit trit) {
+	
+		tritsBits::SetTrit(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4), trit);
+
+	}
+
+	TritSet::TritSet(int size) : defaultTritsAmount(size), currentTritsAmount(size)  {
+	
+		defaultArraySize = std::ceil(size * 2 / (float)8 / (float)sizeof(unsigned));
+
+		currentArraySize = defaultArraySize;
+
+		memory = new unsigned[defaultArraySize];
+
+		memset(memory, 0, defaultArraySize * sizeof(unsigned));
 	}
 
 	TritSet::TritSet(TritSet & tritSet) {
 
-		ArraySize = tritSet.ArraySize;
-		CopyUnsignedArray(tritSet.memory, &memory, tritSet.ArraySize);
+		defaultArraySize = tritSet.currentArraySize;
+		CopyUnsignedArray(tritSet.memory, &memory, tritSet.currentArraySize);
 		
 	}
 
@@ -38,11 +68,11 @@ namespace tritset {
 
 	TritSet::Ref TritSet::operator[](const unsigned index) {
 
-		if (index >= TritsAmount) {
+		if (index >= currentTritsAmount) {
 
 			unsigned * newCell = new unsigned(0);
 
-			TritSet::OutBoundsRef * Ref = new TritSet::OutBoundsRef(newCell, index % (sizeof(unsigned) * 4), index, memory);
+			TritSet::OutBoundsRef * Ref = new TritSet::OutBoundsRef(newCell, index % (sizeof(unsigned) * 4), index, this);
 
 			return * Ref;
 
