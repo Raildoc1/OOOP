@@ -56,4 +56,22 @@ namespace tritsBits {
 
 	}
 
+	trit AndOperation(trit a, trit b) {
+		if (a == F || b == F) return F;
+		else if (a == T && b == T) return T;
+		else return U;
+	}
+
+	trit OrOperation(trit a, trit b) {
+		if (a == T || b == T) return T;
+		else if (a == F && b == F) return F;
+		else return U;
+	}
+
+	trit NotOperation(trit a) {
+		if (a == T) return F;
+		if (a == F) return T;
+		if (a == U) return U;
+	}
+
 }

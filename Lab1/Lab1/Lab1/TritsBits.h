@@ -13,4 +13,7 @@ namespace tritsBits {
 	trit GetTrit(unsigned* src, int index);
 	void SetTrit(unsigned* src, int index, trit trit);
 
+	trit AndOperation(trit a, trit b);
+	trit OrOperation(trit a, trit b);
+	trit NotOperation(trit a);
 }

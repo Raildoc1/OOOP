@@ -20,59 +20,53 @@ namespace tritset {
 		unsigned *memory;
 
 		void ExpandMemory(int index);
+		void ReduceMemory(int lastValidTritIndex);
 
 		void SetTrit(int index, tritsBits::trit trit);
+
+		tritsBits::trit GetTrit(int index);
 
 	public:
 
 		class Ref {
-		protected:
+		private:
 
+			TritSet *tritSet;
 			unsigned *cell;
-			unsigned index;
+
+			unsigned localIndex;
+			unsigned globalIndex;
+
+			bool isValid;
 
 		public:
 
-			Ref(unsigned *cell, unsigned index) : cell(cell), index(index) {
-				std::cout << "Ref();" << std::endl;
-			}
-			virtual ~Ref() {
-				std::cout << "~Ref();" << std::endl;
+			Ref(unsigned *cell, unsigned localIndex, unsigned globalIndex, TritSet * tritSet, bool isValid) : cell(cell), localIndex(localIndex), globalIndex(globalIndex), tritSet(tritSet), isValid(isValid) { }
+			~Ref() {
+
+				if (*cell != 0) {
+					tritSet->ExpandMemory(globalIndex);
+					tritSet->SetTrit(globalIndex, tritsBits::GetTrit(cell, localIndex));
+				} else {
+					if(!isValid) delete cell;
+				}
+
+				tritSet->shrink();
 			}
 
 			Ref & operator = (tritsBits::trit trit) {
-				tritsBits::SetTrit(cell, index, trit);
+				tritsBits::SetTrit(cell, localIndex, trit);
 				return *this;
 			}
 
 			operator tritsBits::trit() {
-				return tritsBits::GetTrit(cell, index);
+				return tritsBits::GetTrit(cell, localIndex);
 			}
 
-		};
+			tritsBits::trit operator & (tritsBits::trit trit);
+			tritsBits::trit operator | (tritsBits::trit trit);
+			tritsBits::trit operator ~ ();
 
-		class OutBoundsRef : public Ref {
-		private:
-
-			unsigned globalIndex;
-			TritSet *tritSet;
-
-		public:
-			OutBoundsRef(unsigned *cell, unsigned localIndex, unsigned GlobalIndex, TritSet *tritSet) : Ref(cell, localIndex), globalIndex(GlobalIndex), tritSet(tritSet) {
-				std::cout << "OutBoundsRef();" << std::endl;
-			}
-			~OutBoundsRef() {
-			
-				std::cout << "~OutBoundsRef();" << std::endl;
-
-				if (*cell != 0) {
-					tritSet->ExpandMemory(globalIndex);
-					tritSet->SetTrit(index, tritsBits::GetTrit(cell, index));
-				} else {
-					delete cell;
-				}
-			
-			}
 		};
 
 		TritSet(int size);
@@ -80,9 +74,21 @@ namespace tritset {
 
 		~TritSet();
 
+		unsigned capacity() { return currentArraySize; }
+		unsigned GetTritsAmount() { return currentTritsAmount; }
+
+		void shrink();
+
 		Ref operator [] (const unsigned index);
 		tritsBits::trit operator [] (const unsigned index) const;
 		
+		TritSet & operator & (TritSet tritSet);
+		TritSet & operator | (TritSet tritSet);
+		TritSet & operator ~ ();
+
+		unsigned countTrits(tritsBits::trit trit);
+		unsigned length();
+
 	};
 }
 

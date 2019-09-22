@@ -16,7 +16,7 @@ namespace tritset {
 
 	void TritSet::ExpandMemory(int index) {
 	
-		if (index > currentTritsAmount) currentTritsAmount = index;
+		if (index >= currentTritsAmount) currentTritsAmount = index + 1;
 
 		if ((index / (sizeof(unsigned) * 4)) >= currentArraySize) {
 
@@ -25,8 +25,9 @@ namespace tritset {
 			// My own realloc
 			unsigned * temp = new unsigned[newArraySize];
 
-			for (int i = 0; i < currentArraySize; i++) {
-				temp[i] = memory[i];
+			for (int i = 0; i < newArraySize; i++) {
+				if(i < currentArraySize) temp[i] = memory[i];
+				else temp[i] = 0;
 			}
 
 			delete[] memory;
@@ -38,16 +39,43 @@ namespace tritset {
 
 	}
 
+	void TritSet::ReduceMemory(int lastValidTritIndex) {
+
+		if (lastValidTritIndex <= currentTritsAmount) currentTritsAmount = lastValidTritIndex + 1;
+	
+		if ((lastValidTritIndex / (sizeof(unsigned) * 4)) <= currentArraySize) {
+
+			int newArraySize = std::ceil((lastValidTritIndex + 1) * 2 / (float)8 / (float)sizeof(unsigned));
+
+			// My own realloc
+			unsigned * temp = new unsigned[newArraySize];
+
+			for (int i = 0; i < newArraySize; i++) {
+				temp[i] = memory[i];
+			}
+
+			delete[] memory;
+			memory = temp;
+
+			currentArraySize = newArraySize;
+		}
+	}
+
 	void TritSet::SetTrit(int index, tritsBits::trit trit) {
 	
 		tritsBits::SetTrit(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4), trit);
 
 	}
 
+	tritsBits::trit TritSet::GetTrit(int index) {
+
+		if (index >= currentTritsAmount) return tritsBits::U;
+		return tritsBits::GetTrit(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
+	}
+
 	TritSet::TritSet(int size) : defaultTritsAmount(size), currentTritsAmount(size)  {
 	
-		defaultArraySize = std::ceil(size * 2 / (float)8 / (float)sizeof(unsigned));
-
+		defaultArraySize = std::ceil(size * 2.0 / 8.0 / (double)sizeof(unsigned));
 		currentArraySize = defaultArraySize;
 
 		memory = new unsigned[defaultArraySize];
@@ -56,8 +84,11 @@ namespace tritset {
 	}
 
 	TritSet::TritSet(TritSet & tritSet) {
-
 		defaultArraySize = tritSet.currentArraySize;
+		currentArraySize = tritSet.currentArraySize;
+		defaultTritsAmount = tritSet.currentTritsAmount;
+		currentTritsAmount = tritSet.currentTritsAmount;
+
 		CopyUnsignedArray(tritSet.memory, &memory, tritSet.currentArraySize);
 		
 	}
@@ -66,19 +97,40 @@ namespace tritset {
 		delete [] memory;
 	}
 
+	void TritSet::shrink() {
+	
+		if (currentTritsAmount > defaultTritsAmount) {
+
+			unsigned lastValidTrit = currentTritsAmount - 1;
+
+			for (int i = currentTritsAmount - 1; i >= defaultTritsAmount; i--) {
+				if (GetTrit(i) == tritsBits::U) {
+					lastValidTrit--;
+				} else {
+					break;
+				}
+			}
+
+			if (lastValidTrit < currentTritsAmount - 1) {
+				ReduceMemory(lastValidTrit);
+			}
+		}
+
+	}
+
 	TritSet::Ref TritSet::operator[](const unsigned index) {
 
 		if (index >= currentTritsAmount) {
 
 			unsigned * newCell = new unsigned(0);
 
-			TritSet::OutBoundsRef * Ref = new TritSet::OutBoundsRef(newCell, index % (sizeof(unsigned) * 4), index, this);
+			TritSet::Ref * Ref = new TritSet::Ref(newCell, index % (sizeof(unsigned) * 4), index, this, false);
 
 			return * Ref;
 
 		} else {
 
-			TritSet::Ref * Ref = new TritSet::Ref(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4));
+			TritSet::Ref * Ref = new TritSet::Ref(&memory[index / (sizeof(unsigned) * 4)], index % (sizeof(unsigned) * 4), index, this, true);
 
 			return * Ref;
 
@@ -93,6 +145,74 @@ namespace tritset {
 		return temp;
 
 	}
+
+	TritSet & TritSet::operator&(TritSet tritSet) {
+
+		int newSetSize = tritSet.currentTritsAmount > currentTritsAmount ? tritSet.currentTritsAmount : currentTritsAmount;
+
+		TritSet *newSet = new TritSet(newSetSize);
+
+		for (int i = 0; i < newSetSize; i++) {
+			(*newSet)[i] = tritsBits::AndOperation(tritSet[i], GetTrit(i));
+			//std::cout << "newSet[" << i << "] = " << tritsBits::AndOperation(tritSet[i], GetTrit(i)) << std::endl;
+		}
+
+		return *newSet;
+	}
 	
+	TritSet & TritSet::operator|(TritSet tritSet) {
+
+		int newSetSize = tritSet.currentTritsAmount > currentTritsAmount ? tritSet.currentTritsAmount : currentTritsAmount;
+
+		TritSet *newSet = new TritSet(newSetSize);
+
+		for (int i = 0; i < newSetSize; i++) {
+			(*newSet)[i] = tritsBits::OrOperation(tritSet[i], GetTrit(i));
+			//std::cout << "newSet[" << i << "] = " << tritsBits::OrOperation(tritSet[i], GetTrit(i)) << std::endl;
+		}
+
+		return *newSet;
+	}
+
+	TritSet & TritSet::operator~() {
+
+		TritSet *newSet = new TritSet(currentTritsAmount);
+
+		for (int i = 0; i < currentTritsAmount; i++) {
+			(*newSet)[i] = tritsBits::NotOperation(GetTrit(i));
+			//std::cout << "newSet[" << i << "] = " << tritsBits::OrOperation(tritSet[i], GetTrit(i)) << std::endl;
+		}
+
+		return *newSet;
+	}
+
+	unsigned TritSet::length() {
+		for (unsigned i = currentTritsAmount - 1; i >= 0; i--) {
+			if (GetTrit(i) != tritsBits::U) return (i + 1);
+		}
+	}
+
+	unsigned TritSet::countTrits(tritsBits::trit trit) {
+
+		unsigned result = 0;
+
+		for (int i = 0; i < this->length; i++) {
+			if (GetTrit(i) == trit) result++;
+		}
+
+		return result;
+	}
+
+	tritsBits::trit TritSet::Ref::operator&(tritsBits::trit trit) {
+		return tritsBits::AndOperation(tritsBits::GetTrit(cell, localIndex), trit);
+	}
+
+	tritsBits::trit TritSet::Ref::operator|(tritsBits::trit trit) {
+		return tritsBits::OrOperation(tritsBits::GetTrit(cell, localIndex), trit);
+	}
+
+	tritsBits::trit TritSet::Ref::operator~() {
+		return tritsBits::NotOperation(tritsBits::GetTrit(cell, localIndex));
+	}
 
 }
