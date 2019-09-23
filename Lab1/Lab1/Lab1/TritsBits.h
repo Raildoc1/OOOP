@@ -8,10 +8,10 @@ namespace tritsBits {
 
 	enum trit { T, F, U };
 
-	int bpow(int pow);
+	unsigned bpow(unsigned pow);
 
-	trit GetTrit(unsigned* src, int index);
-	void SetTrit(unsigned* src, int index, trit trit);
+	trit GetTrit(unsigned* src, unsigned index);
+	void SetTrit(unsigned* src, unsigned index, trit trit);
 
 	trit AndOperation(trit a, trit b);
 	trit OrOperation(trit a, trit b);

@@ -11,20 +11,20 @@ namespace tritset {
 
 	private:
 
-		int defaultArraySize;
-		int defaultTritsAmount;
+		unsigned defaultArraySize;
+		unsigned defaultTritsAmount;
 
-		int currentArraySize;
-		int currentTritsAmount;
+		unsigned currentArraySize;
+		unsigned currentTritsAmount;
 
 		unsigned *memory;
 
-		void ExpandMemory(int index);
-		void ReduceMemory(int lastValidTritIndex);
+		void ReduceMemory(unsigned lastValidTritIndex);
+		void ExpandMemory(unsigned index);
 
-		void SetTrit(int index, tritsBits::trit trit);
+		void SetTrit(unsigned index, tritsBits::trit trit);
 
-		tritsBits::trit GetTrit(int index);
+		tritsBits::trit GetTrit(unsigned index);
 
 	public:
 
@@ -69,7 +69,7 @@ namespace tritset {
 
 		};
 
-		TritSet(int size);
+		TritSet(unsigned size);
 		TritSet(TritSet &tritSet);
 
 		~TritSet();
@@ -88,6 +88,8 @@ namespace tritset {
 
 		unsigned countTrits(tritsBits::trit trit);
 		unsigned length();
+
+		void trim(unsigned index);
 
 	};
 }

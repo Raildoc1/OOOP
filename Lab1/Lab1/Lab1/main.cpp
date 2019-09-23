@@ -11,7 +11,7 @@ using namespace tritsBits;
 
 int main() {
 
-	TritSet set1(10);
+	TritSet set1(100);
 	TritSet set2(20);
 
 	std::cout << "set1.capacity() : " << set1.capacity() << std::endl;
@@ -33,13 +33,17 @@ int main() {
 	set2[17] = F;
 
 	TritSet set3 = ~set1;
+
 	for (int i = 0; i < set3.GetTritsAmount(); i++) {
 		if (set3[i] == T) std::cout << set1[i] << " | " << set2[i] <<  " = " << "set3[" << i << "] = " << "T" << std::endl;
 		else if (set3[i] == F) std::cout << set1[i] << " | " << set2[i] << " = " << "set3[" << i << "] = " << "F" << std::endl;
 	}
 
 	std::cout << "set3.capacity() : " << set3.capacity() << std::endl;
-	std::cout << "set3.legth() : " << set3.length() << std::endl;
+	std::cout << "set3.length() : " << set3.length() << std::endl;
+	std::cout << "set3.countTrits(T) : " << set3.countTrits(T) << std::endl;
+	std::cout << "set3.countTrits(F) : " << set3.countTrits(F) << std::endl;
+	std::cout << "set3.countTrits(U) : " << set3.countTrits(U) << std::endl;
 
 	std::cin;
 

@@ -2,18 +2,18 @@
 
 namespace tritsBits {
 
-	int bpow(int pow) {
+	unsigned bpow(unsigned pow) {
 
-		int result = 1;
+		unsigned result = 1;
 
-		for (int i = 0; i < pow; i++) {
+		for (unsigned i = 0; i < pow; i++) {
 			result *= 2;
 		}
 
 		return result;
 	}
 
-	trit GetTrit(unsigned * src, int index) {
+	trit GetTrit(unsigned * src, unsigned index) {
 
 		int bitMask = bpow((sizeof(unsigned) * 8 - 1) - (index * 2));
 
@@ -26,7 +26,7 @@ namespace tritsBits {
 		return T;
 	}
 
-	void SetTrit(unsigned * src, int index, trit trit) {
+	void SetTrit(unsigned * src, unsigned index, trit trit) {
 
 		if (trit == U) {
 
