@@ -2,6 +2,7 @@
 
 #include "TritsBits.h"
 #include <iostream>
+#include <unordered_map>
 
 namespace tritset {
 
@@ -59,8 +60,29 @@ namespace tritset {
 				return *this;
 			}
 
+			Ref & operator = (Ref & ref) { }
+
 			operator tritsBits::trit() {
 				return tritsBits::GetTrit(cell, localIndex);
+			}
+
+
+
+			friend std::ostream & operator << (std::ostream & cout, const tritsBits::trit & trit) {
+				
+				switch (trit) {
+				case tritsBits::U:
+					cout << "U";
+					break;
+				case tritsBits::F:
+					cout << "F";
+					break;
+				case tritsBits::T:
+					cout << "T";
+					break;
+				}
+
+				return cout;
 			}
 
 			tritsBits::trit operator & (tritsBits::trit trit);
@@ -90,6 +112,8 @@ namespace tritset {
 		unsigned length();
 
 		void trim(unsigned index);
+
+		std::unordered_map< tritsBits::trit, int > cardinality();
 
 	};
 }

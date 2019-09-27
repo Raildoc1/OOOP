@@ -194,15 +194,26 @@ namespace tritset {
 	}
 
 	void TritSet::trim(unsigned index) {
-	
-		/*if ((index - 1) / (sizeof(unsigned) * 4) < ) {
 
+		for (int i = index; i < currentTritsAmount; i++) {
+			SetTrit(i, tritsBits::U);
 		}
 
-		defaultTritsAmount = currentTritsAmount = index;
+		defaultTritsAmount = index;
 
-		defaultArraySize = currentArraySize = index / (sizeof(unsigned) * 4);*/
+		shrink();
 	
+	}
+
+	std::unordered_map<tritsBits::trit, int> TritSet::cardinality() {
+
+		std::unordered_map<tritsBits::trit, int> * newMap = new  std::unordered_map<tritsBits::trit, int>();
+
+		newMap->insert(std::make_pair(tritsBits::T, countTrits(tritsBits::T)));
+		newMap->insert(std::make_pair(tritsBits::F, countTrits(tritsBits::F)));
+		newMap->insert(std::make_pair(tritsBits::U, countTrits(tritsBits::U)));
+
+		return *newMap;
 	}
 
 	unsigned TritSet::countTrits(tritsBits::trit trit) {
