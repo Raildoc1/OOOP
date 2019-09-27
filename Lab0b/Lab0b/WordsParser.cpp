@@ -1,5 +1,4 @@
 #include "WordsParser.h"
-#include <iostream>
 
 namespace WordCounter {
 	
@@ -40,20 +39,21 @@ namespace WordCounter {
 		if(word != "") AddWord(word);
 	}
 
-	set<TableRow, Comparator> WordsParser::MapToSortedSet() {
+	std::vector<TableRow> WordsParser::MapToSortedVector() {
 
 		UpdateFreq();
 
-		Comparator compFunctor =
-			[](TableRow elem1, TableRow elem2) {
+		Comparator compFunctor = [](TableRow const & elem1, TableRow const & elem2) {
 			if (elem2.second.second == elem1.second.second) return elem2.first[0] > elem1.first[0];
 			return elem2.second.second < elem1.second.second;
 		};
-		set <TableRow, Comparator> WordsSet(Words->begin(), Words->end(), compFunctor);
-		return WordsSet;
+
+		vector <TableRow> WordsVector(Words->begin(), Words->end());
+
+		return WordsVector;
 	}
 
-	void WordsParser::SetToCSV(set <TableRow, Comparator> set, string file) {
+	void WordsParser::VectorToCSV(vector<TableRow> set, string file) {
 		ofstream output(file);
 
 		if (!output) {

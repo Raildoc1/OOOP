@@ -1,10 +1,11 @@
 #pragma once
 
-#include<string>
-#include<map>
-#include <set>
 #include <functional>
+#include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
+#include <map>
 
 
 namespace WordCounter {
@@ -30,9 +31,9 @@ namespace WordCounter {
 
 		void AddLine(string line);
 
-		set <TableRow, Comparator> MapToSortedSet();
+		vector<TableRow> MapToSortedVector();
 
-		void SetToCSV(set <TableRow, Comparator>, string);
+		void VectorToCSV(vector<TableRow> set, string file);
 	};
 }
 

@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 
 	#pragma region Output
 
-	wordsParser.SetToCSV(wordsParser.MapToSortedSet(), argv[2]);
+	wordsParser.VectorToCSV(wordsParser.MapToSortedVector(), argv[2]);
 
 	#pragma endregion
 
