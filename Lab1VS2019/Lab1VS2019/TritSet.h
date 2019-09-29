@@ -53,7 +53,6 @@ namespace tritset {
 					if (!isValid) delete cell;
 				}
 
-				tritSet->shrink();
 			}
 
 			Ref& operator = (tritsBits::trit trit) {

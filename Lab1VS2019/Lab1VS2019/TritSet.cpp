@@ -121,7 +121,7 @@ namespace tritset {
 
 	}
 
-	TritSet::Ref tritset::TritSet::operator[](const unsigned index) {
+	TritSet::Ref TritSet::operator[](const unsigned index) {
 
 		if (index >= currentTritsAmount) {
 
@@ -191,10 +191,10 @@ namespace tritset {
 	}
 
 	unsigned TritSet::length() {
-		for (unsigned i = currentTritsAmount - 1; i >= 0; i--) {
+		for (int i = currentTritsAmount - 1; i >= 0; i--) {
 			if (GetTrit(i) != tritsBits::trit::U) return (i + 1);
 		}
-		return currentTritsAmount;
+		return 0;
 	}
 
 	void TritSet::trim(unsigned index) {

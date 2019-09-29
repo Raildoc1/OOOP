@@ -3,7 +3,5 @@
 
 int main() {
 
-	tritset::TritSet set(1000);
-
 	return 0;
 }
