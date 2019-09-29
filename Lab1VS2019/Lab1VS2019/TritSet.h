@@ -6,7 +6,7 @@
 
 namespace tritset {
 
-	void CopyUnsignedArray(const unsigned * source, unsigned ** target, unsigned size);
+	void CopyUnsignedArray(const unsigned* source, unsigned** target, unsigned size);
 
 	class TritSet {
 
@@ -18,7 +18,7 @@ namespace tritset {
 		unsigned currentArraySize;
 		unsigned currentTritsAmount;
 
-		unsigned *memory;
+		unsigned* memory;
 
 		void ReduceMemory(unsigned lastValidTritIndex);
 		void ExpandMemory(unsigned index);
@@ -32,8 +32,8 @@ namespace tritset {
 		class Ref {
 		private:
 
-			TritSet *tritSet;
-			unsigned *cell;
+			TritSet* tritSet;
+			unsigned* cell;
 
 			unsigned localIndex;
 			unsigned globalIndex;
@@ -42,25 +42,26 @@ namespace tritset {
 
 		public:
 
-			Ref(unsigned *cell, unsigned localIndex, unsigned globalIndex, TritSet * tritSet, bool isValid) : cell(cell), localIndex(localIndex), globalIndex(globalIndex), tritSet(tritSet), isValid(isValid) { }
+			Ref(unsigned* cell, unsigned localIndex, unsigned globalIndex, TritSet* tritSet, bool isValid) : cell(cell), localIndex(localIndex), globalIndex(globalIndex), tritSet(tritSet), isValid(isValid) { }
 			~Ref() {
 
 				if (*cell != 0) {
 					tritSet->ExpandMemory(globalIndex);
 					tritSet->SetTrit(globalIndex, tritsBits::GetTrit(cell, localIndex));
-				} else {
-					if(!isValid) delete cell;
+				}
+				else {
+					if (!isValid) delete cell;
 				}
 
 				tritSet->shrink();
 			}
 
-			Ref & operator = (tritsBits::trit trit) {
+			Ref& operator = (tritsBits::trit trit) {
 				tritsBits::SetTrit(cell, localIndex, trit);
 				return *this;
 			}
 
-			Ref & operator = (Ref & ref) {
+			Ref& operator = (Ref& ref) {
 				tritsBits::SetTrit(cell, localIndex, tritsBits::GetTrit(ref.cell, ref.localIndex));
 				return *this;
 			}
@@ -79,16 +80,16 @@ namespace tritset {
 				return tritsBits::GetTrit(cell, localIndex);
 			}
 
-			friend std::ostream & operator << (std::ostream & cout, const tritsBits::trit & trit) {
-				
+			friend std::ostream& operator << (std::ostream& cout, const tritsBits::trit& trit) {
+
 				switch (trit) {
-				case tritsBits::U:
+				case tritsBits::trit::U:
 					cout << "U";
 					break;
-				case tritsBits::F:
+				case tritsBits::trit::F:
 					cout << "F";
 					break;
-				case tritsBits::T:
+				case tritsBits::trit::T:
 					cout << "T";
 					break;
 				}
@@ -103,7 +104,7 @@ namespace tritset {
 		};
 
 		TritSet(unsigned size);
-		TritSet(TritSet &tritSet);
+		TritSet(TritSet& tritSet);
 
 		~TritSet();
 
@@ -114,10 +115,10 @@ namespace tritset {
 
 		Ref operator [] (const unsigned index);
 		tritsBits::trit operator [] (const unsigned index) const;
-		
-		TritSet & operator & (TritSet tritSet);
-		TritSet & operator | (TritSet tritSet);
-		TritSet & operator ~ ();
+
+		TritSet& operator & (TritSet tritSet);
+		TritSet& operator | (TritSet tritSet);
+		TritSet& operator ~ ();
 
 		unsigned countTrits(tritsBits::trit trit);
 		unsigned length();
