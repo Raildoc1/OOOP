@@ -150,44 +150,70 @@ namespace tritset {
 
 	}
 
-	TritSet& TritSet::operator&(TritSet tritSet) {
+	TritSet TritSet::operator&(TritSet tritSet) {
 
 		unsigned newSetSize = tritSet.currentTritsAmount > currentTritsAmount ? tritSet.currentTritsAmount : currentTritsAmount;
 
-		TritSet* newSet = new TritSet(newSetSize);
+		TritSet newSet(newSetSize);
 
 		for (unsigned i = 0; i < newSetSize; i++) {
-			(*newSet)[i] = tritsBits::AndOperation(tritSet[i], GetTrit(i));
+			newSet[i] = tritsBits::AndOperation(tritSet[i], GetTrit(i));
 			//std::cout << "newSet[" << i << "] = " << tritsBits::AndOperation(tritSet[i], GetTrit(i)) << std::endl;
 		}
 
-		return *newSet;
+		return newSet;
 	}
 
-	TritSet& TritSet::operator|(TritSet tritSet) {
+	TritSet TritSet::operator|(TritSet tritSet) {
 
 		unsigned newSetSize = tritSet.currentTritsAmount > currentTritsAmount ? tritSet.currentTritsAmount : currentTritsAmount;
 
-		TritSet* newSet = new TritSet(newSetSize);
+		TritSet newSet(newSetSize);
 
 		for (unsigned i = 0; i < newSetSize; i++) {
-			(*newSet)[i] = tritsBits::OrOperation(tritSet[i], GetTrit(i));
-			//std::cout << "newSet[" << i << "] = " << tritsBits::OrOperation(tritSet[i], GetTrit(i)) << std::endl;
+			newSet[i] = tritsBits::OrOperation(tritSet[i], GetTrit(i));
 		}
 
-		return *newSet;
+		return newSet;
 	}
 
-	TritSet& TritSet::operator~() {
+	TritSet TritSet::operator~() {
 
-		TritSet* newSet = new TritSet(currentTritsAmount);
+		TritSet newSet(currentTritsAmount);
 
 		for (unsigned i = 0; i < currentTritsAmount; i++) {
-			(*newSet)[i] = tritsBits::NotOperation(GetTrit(i));
-			//std::cout << "newSet[" << i << "] = " << tritsBits::OrOperation(tritSet[i], GetTrit(i)) << std::endl;
+			newSet[i] = tritsBits::NotOperation(GetTrit(i));
 		}
 
-		return *newSet;
+		return newSet;
+	}
+
+	TritSet& TritSet::operator=(const TritSet &obj) {
+
+		delete[] memory;
+
+		currentArraySize = obj.currentArraySize;
+		currentTritsAmount = obj.currentTritsAmount;
+		defaultArraySize = obj.defaultArraySize;
+		defaultTritsAmount = obj.defaultTritsAmount;
+
+		memory = new unsigned[currentArraySize];
+		CopyUnsignedArray(obj.memory, &memory, currentArraySize);
+
+		return *this;
+	}
+
+	TritSet& TritSet::operator=(TritSet&& obj) noexcept {
+
+		delete[] memory;
+
+		currentArraySize = obj.currentArraySize;
+		currentTritsAmount = obj.currentTritsAmount;
+		defaultArraySize = obj.defaultArraySize;
+		defaultTritsAmount = obj.defaultTritsAmount;
+
+		obj.memory = nullptr;
+		return *this;
 	}
 
 	unsigned TritSet::length() {
@@ -229,6 +255,17 @@ namespace tritset {
 		}
 
 		return result;
+	}
+
+	 TritSet::TritSet(TritSet&& obj) noexcept {
+		currentArraySize = obj.currentArraySize;
+		currentTritsAmount = obj.currentTritsAmount;
+
+		defaultArraySize = obj.defaultArraySize;
+		defaultTritsAmount = obj.defaultTritsAmount;
+
+		memory = obj.memory;
+		obj.memory = nullptr;
 	}
 
 	tritsBits::trit TritSet::Ref::operator&(tritsBits::trit trit) {

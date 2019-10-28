@@ -14,8 +14,9 @@ int main(int argc, char* argv[]) {
 	Readfile read(1, "input.txt");
 	Writefile write(2, "output.txt");
 	Grep grep(3, "replace");
+	Sort sort;
 
-	write.execute(grep.execute(read.execute("")));
+	write.execute(sort.execute(read.execute("")));
 
 	return 0;
 }

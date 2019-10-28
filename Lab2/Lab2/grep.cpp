@@ -35,7 +35,12 @@ std::string Grep::execute(std::string text) {
 		}
 	}
 
-	std::string result = "";
+	std::string result = *lines.begin();
+
+	for (it = lines.begin()++; it != lines.end(); it++) {
+		result += "\n";
+		result += *it;
+	}
 
 	return result;
 }

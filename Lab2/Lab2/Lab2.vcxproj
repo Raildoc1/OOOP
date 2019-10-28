@@ -123,16 +123,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dump.cpp" />
     <ClCompile Include="grep.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Readfile.cpp" />
+    <ClCompile Include="Sort.cpp" />
     <ClCompile Include="Writefile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dump.h" />
     <ClInclude Include="grep.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Readfile.h" />
+    <ClInclude Include="Sort.h" />
     <ClInclude Include="Worker.h" />
     <ClInclude Include="Writefile.h" />
   </ItemGroup>

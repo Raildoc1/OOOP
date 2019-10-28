@@ -104,6 +104,7 @@ namespace tritset {
 
 		TritSet(unsigned size);
 		TritSet(TritSet& tritSet);
+		TritSet(TritSet&& obj) noexcept;
 
 		~TritSet();
 
@@ -115,9 +116,12 @@ namespace tritset {
 		Ref operator [] (const unsigned index);
 		tritsBits::trit operator [] (const unsigned index) const;
 
-		TritSet& operator & (TritSet tritSet);
-		TritSet& operator | (TritSet tritSet);
-		TritSet& operator ~ ();
+		TritSet operator & (TritSet tritSet);
+		TritSet operator | (TritSet tritSet);
+		TritSet operator ~ ();
+
+		TritSet& operator = (const TritSet &tritSet);
+		TritSet& operator= (TritSet&& obj) noexcept;
 
 		unsigned countTrits(tritsBits::trit trit);
 		unsigned length();

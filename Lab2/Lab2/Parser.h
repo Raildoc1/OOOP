@@ -3,6 +3,8 @@
 #include "Readfile.h"
 #include "Writefile.h"
 #include "Grep.h"
+#include "Sort.h"
+#include "Dump.h"
 
 #include<string>
 #include<map>
