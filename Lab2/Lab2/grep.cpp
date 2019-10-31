@@ -16,7 +16,7 @@ bool hasWord(std::string& text, std::string& word) {
 	return false;
 }
 
-std::string Grep::execute(std::string text) {
+std::string Grep::execute(std::string & text) {
 	std::string temp = "";
 
 	std::list<std::string> lines;

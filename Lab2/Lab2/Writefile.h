@@ -13,7 +13,7 @@ public:
 		this->outputFile = outputFile;
 	}
 
-	std::string execute(std::string text) override;
+	std::string execute(std::string & text) override;
 
 };
 

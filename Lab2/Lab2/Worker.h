@@ -16,6 +16,6 @@ protected:
 
 public:
 
-	virtual std::string execute(std::string text) = 0;
+	virtual std::string execute(std::string & text) = 0;
 };
 

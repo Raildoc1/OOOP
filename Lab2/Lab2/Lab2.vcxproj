@@ -130,6 +130,7 @@
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Readfile.cpp" />
     <ClCompile Include="Sort.cpp" />
+    <ClCompile Include="WorkerFactory.cpp" />
     <ClCompile Include="WorkFlowExecutor.cpp" />
     <ClCompile Include="Writefile.cpp" />
   </ItemGroup>
@@ -141,11 +142,12 @@
     <ClInclude Include="Readfile.h" />
     <ClInclude Include="Sort.h" />
     <ClInclude Include="Worker.h" />
+    <ClInclude Include="WorkerFactory.h" />
     <ClInclude Include="Writefile.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="in.txt" />
     <Text Include="input.txt" />
-    <Text Include="output.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,13 +13,14 @@ private:
 	std::vector<Worker*> commands;
 	std::vector<int> executeOrder;
 
+	std::string buffer = "";
 public:
 	static Executor& GetInstance() {
 		static Executor instance;
 		return instance;
 	}
 
-	void ExecuteWorkFlow(std::string);
+	void ExecuteWorkFlow(std::string fileName);
 
 };
 

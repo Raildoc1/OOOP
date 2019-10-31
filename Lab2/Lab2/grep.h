@@ -14,6 +14,6 @@ public:
 		this->word = word;
 	}
 
-	std::string execute(std::string text) override;
+	std::string execute(std::string & text) override;
 
 };

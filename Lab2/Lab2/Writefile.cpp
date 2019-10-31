@@ -1,7 +1,7 @@
 #include "Writefile.h"
 #include <iostream>
 
-std::string Writefile::execute(std::string text) {
+std::string Writefile::execute(std::string & text) {
 	std::ofstream fout(outputFile);
 	if (!fout) {
 		//colorMessages::RedError(" Can't open file " + outputFile + "!");

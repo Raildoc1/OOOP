@@ -8,7 +8,7 @@ bool compareStrings(const std::string &s1, const std::string &s2) {
 	return s1.length() < s2.length();
 }
 
-std::string Sort::execute(std::string text) {
+std::string Sort::execute(std::string & text) {
 	std::string temp = "";
 
 	std::list<std::string> lines;

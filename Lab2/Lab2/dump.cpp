@@ -1,6 +1,6 @@
 #include "dump.h"
 
-std::string Dump::execute(std::string text) {
+std::string Dump::execute(std::string & text) {
 	std::ofstream fout(text);
 	if (!fout) {
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

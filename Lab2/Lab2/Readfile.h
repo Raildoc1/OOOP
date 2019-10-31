@@ -14,7 +14,7 @@ public:
 		this->inputFile = inputFile;
 	}
 
-	std::string execute(std::string text) override;
+	std::string execute(std::string & text) override;
 
 };
 

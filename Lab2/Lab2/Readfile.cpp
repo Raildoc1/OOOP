@@ -1,6 +1,6 @@
 #include "Readfile.h"
 
-std::string Readfile::execute(std::string text) {
+std::string Readfile::execute(std::string & text) {
 	std::ifstream fin(inputFile);
 	if (!fin) {
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

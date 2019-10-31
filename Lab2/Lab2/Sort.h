@@ -11,9 +11,5 @@ private:
 	std::string word;
 public:
 
-	Sort() {
-
-	}
-
-	std::string execute(std::string text) override;
+	std::string execute(std::string & text) override;
 };

@@ -14,13 +14,6 @@ int main(int argc, char* argv[]) {
 
 	Executor::GetInstance().ExecuteWorkFlow("input.txt");
 
-	/*Readfile read(1, "input.txt");
-	Writefile write(2, "output.txt");
-	Grep grep(3, "replace");
-	Sort sort;
-
-	write.execute(sort.execute(read.execute("")));*/
-
 	std::string s = "134 = bla bla bla";
 
 	std::string s1 = s.substr(0, s.find(" = "));
