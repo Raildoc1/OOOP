@@ -2,7 +2,6 @@
 
 #include "Worker.h"
 
-#include <iostream>
 #include <fstream>
 
 class Writefile : public Worker {

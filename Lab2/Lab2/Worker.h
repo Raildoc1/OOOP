@@ -5,6 +5,8 @@
 
 #include <Windows.h>
 
+#include "ColorMessages.h"
+
 class Worker {
 protected:
 

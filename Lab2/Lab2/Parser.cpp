@@ -1,9 +1,8 @@
 #include "Parser.h"
 
 #include <fstream>
-#include <iostream>
 
-void Parser::readCommands(std::string &fileName) {
+void Parser::readCommands(std::string &fileName, Worker** commands, int* executeOrder) {
 
 	std::ifstream fin(fileName);
 
@@ -29,8 +28,9 @@ void Parser::readCommands(std::string &fileName) {
 	}
 
 	while (buffer != "csed") {
+
 		std::getline(fin, buffer);
-		std::cout << buffer << std::endl;
+
 		if (fin.eof()) {
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 			SetConsoleTextAttribute(hConsole, 12); // Red Color

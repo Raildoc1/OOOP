@@ -6,8 +6,9 @@
 #include "Sort.h"
 #include "Dump.h"
 
-#include<string>
-#include<map>
+#include <string>
+#include <iostream>
+#include <map>
 
 class Parser {
 
@@ -16,7 +17,7 @@ private:
 public:
 	Parser() {}
 	~Parser() {}
-	void readCommands(std::string &fileName);
+	void readCommands(std::string &fileName, Worker** commands, int* executeOrder);
 
 };
 
