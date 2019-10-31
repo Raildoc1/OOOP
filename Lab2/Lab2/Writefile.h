@@ -9,7 +9,7 @@ class Writefile : public Worker {
 private:
 	std::string outputFile;
 public:
-	Writefile(unsigned id, std::string outputFile) {
+	Writefile(std::string outputFile) {
 		this->outputFile = outputFile;
 	}
 

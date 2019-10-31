@@ -10,7 +10,7 @@ class Readfile : public Worker {
 private:
 	std::string inputFile;
 public:
-	Readfile(unsigned id, std::string inputFile){
+	Readfile(std::string inputFile){
 		this->inputFile = inputFile;
 	}
 

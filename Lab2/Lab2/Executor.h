@@ -1,8 +1,6 @@
 #pragma once
 
 #include <string>
-#include <list>
-
 #include "Parser.h"
 
 class Executor
@@ -12,8 +10,8 @@ private:
 	Executor(const Executor&);
 	Executor& operator = ( Executor&);
 
-	Worker** commands;
-	int * executeOrder;
+	std::vector<Worker*> commands;
+	std::vector<int> executeOrder;
 
 public:
 	static Executor& GetInstance() {

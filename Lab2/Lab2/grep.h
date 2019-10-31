@@ -10,7 +10,7 @@ class Grep : public Worker {
 private:
 	std::string word;
 public:
-	Grep(unsigned id, std::string word) {
+	Grep(std::string word) {
 		this->word = word;
 	}
 

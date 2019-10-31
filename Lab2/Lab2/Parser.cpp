@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-void Parser::readCommands(std::string &fileName, Worker** commands, int* executeOrder) {
+void Parser::readCommands(std::string &fileName, std::vector<Worker*> * commands, std::vector<int> * executeOrder) {
 
 	std::ifstream fin(fileName);
 

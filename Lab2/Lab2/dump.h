@@ -11,7 +11,7 @@ private:
 	std::string outputFile;
 public:
 
-	Dump(unsigned id, std::string outputFile) {
+	Dump(std::string outputFile) {
 		this->outputFile = outputFile;
 	}
 
