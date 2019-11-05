@@ -129,6 +129,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Readfile.cpp" />
+    <ClCompile Include="Replace.cpp" />
     <ClCompile Include="Sort.cpp" />
     <ClCompile Include="WorkerFactory.cpp" />
     <ClCompile Include="WorkFlowExecutor.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="grep.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Readfile.h" />
+    <ClInclude Include="Replace.h" />
     <ClInclude Include="Sort.h" />
     <ClInclude Include="Worker.h" />
     <ClInclude Include="WorkerFactory.h" />

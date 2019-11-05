@@ -2,8 +2,9 @@
 
 #include "Worker.h"
 
-#include "Readfile.h"
 #include "Writefile.h"
+#include "Readfile.h"
+#include "Replace.h"
 #include "Grep.h"
 #include "Sort.h"
 #include "Dump.h"

@@ -25,12 +25,18 @@ Worker* WorkerFactory::Create(std::string key, std::string parametrs) const {
 	}
 	else if (key == "replace")
 	{
-		// return new replace
+		return new Replace(parametrs);
 	}
 	else if (key == "dump")
 	{
 		return new Dump(parametrs);
 	}
-	
-	return nullptr;
+	else {
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(hConsole, 14); // Red Color
+		std::cout << "[Warning]:";
+		SetConsoleTextAttribute(hConsole, 15); // White Color
+		std::cout << " command " << key << " not found!" << std::endl;
+		return nullptr;
+	}
 }

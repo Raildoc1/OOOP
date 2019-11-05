@@ -21,6 +21,7 @@ public:
 	}
 
 	void ExecuteWorkFlow(std::string fileName);
+	void ExecuteWorkFlow(std::string fileName, std::string in, std::string out);
 
 };
 
