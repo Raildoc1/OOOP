@@ -33,72 +33,45 @@ namespace tritset {
 		private:
 
 			TritSet* tritSet;
-			unsigned* cell;
+		
 
-			unsigned localIndex;
-			unsigned globalIndex;
-
-			bool isValid;
+			unsigned index;
+	
 
 		public:
 
-			Ref(unsigned* cell, unsigned localIndex, unsigned globalIndex, TritSet* tritSet, bool isValid) : cell(cell), localIndex(localIndex), globalIndex(globalIndex), tritSet(tritSet), isValid(isValid) { }
-			~Ref() {
-
-				if (*cell != 0) {
-					tritSet->ExpandMemory(globalIndex);
-					tritSet->SetTrit(globalIndex, tritsBits::GetTrit(cell, localIndex));
-				}
-				else {
-					if (!isValid) delete cell;
-				}
-
-			}
+			Ref(unsigned index,TritSet* tritSet) : index(index), tritSet(tritSet) { }
+			
 
 			Ref& operator = (tritsBits::trit trit) {
-				tritsBits::SetTrit(cell, localIndex, trit);
+				tritSet->SetTrit(index, trit);
 				return *this;
 			}
 
 			Ref& operator = (Ref& ref) {
-				tritsBits::SetTrit(cell, localIndex, tritsBits::GetTrit(ref.cell, ref.localIndex));
+				*this = (tritsBits::trit)ref;
 				return *this;
 			}
 
-			bool operator == (Ref& ref) {
-				if (tritsBits::GetTrit(ref.cell, ref.localIndex) == tritsBits::GetTrit(this->cell, this->localIndex)) return true;
-				return false;
+			//bool operator == (Ref& ref) {
+			//	if (tritsBits::GetTrit(ref.cell, ref.localIndex) == tritsBits::GetTrit(this->cell, this->localIndex)) return true;
+			//	return false;
+			//}
+
+			//bool operator == (const tritsBits::trit trit) {
+			//	if (trit == tritsBits::GetTrit(this->cell, this->localIndex)) return true;
+			//	return false;
+			//}
+
+			operator tritsBits::trit() const {
+				return tritSet->GetTrit(index);
 			}
 
-			bool operator == (const tritsBits::trit trit) {
-				if (trit == tritsBits::GetTrit(this->cell, this->localIndex)) return true;
-				return false;
-			}
 
-			operator tritsBits::trit() {
-				return tritsBits::GetTrit(cell, localIndex);
-			}
 
-			friend std::ostream& operator << (std::ostream& cout, const tritsBits::trit& trit) {
-
-				switch (trit) {
-				case tritsBits::trit::U:
-					cout << "U";
-					break;
-				case tritsBits::trit::F:
-					cout << "F";
-					break;
-				case tritsBits::trit::T:
-					cout << "T";
-					break;
-				}
-
-				return cout;
-			}
-
-			tritsBits::trit operator & (tritsBits::trit trit);
-			tritsBits::trit operator | (tritsBits::trit trit);
-			tritsBits::trit operator ~ ();
+			//tritsBits::trit operator & (tritsBits::trit trit);
+			//tritsBits::trit operator | (tritsBits::trit trit);
+			//tritsBits::trit operator ~ ();
 
 		};
 
@@ -131,5 +104,7 @@ namespace tritset {
 		std::unordered_map< tritsBits::trit, int > cardinality();
 
 	};
+	std::ostream& operator << (std::ostream& cout, const TritSet::Ref &trit);
+
 }
 

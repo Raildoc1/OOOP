@@ -14,6 +14,10 @@ int main() {
 
 	tritset::TritSet set2 = set1 & set;
 
+	for (int i = 0; i < 100; i++) {
+		std::cout << "set2[" << i << "] = " << set2[i] << std::endl;
+	}
+
 	set = set2;
 
 	set.shrink();

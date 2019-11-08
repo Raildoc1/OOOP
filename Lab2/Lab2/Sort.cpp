@@ -1,7 +1,7 @@
 #include "Sort.h"
 
 bool compareStrings(const std::string &s1, const std::string &s2) {
-	int maxLen = (s1.length() > s2.length()) ? s2.length() : s1.length();
+	int maxLen = (s1.length() > s2.length()) ? (int)s2.length() : (int)s1.length();
 	for (int i = 0; i < maxLen; i++) {
 		if (s1[i] != s2[i]) return (s1[i] < s2[i]);
 	}

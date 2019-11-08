@@ -60,22 +60,38 @@ namespace tritsBits {
 
 	}
 
-	trit AndOperation(trit a, trit b) {
+	trit operator &(trit a, trit b) {
 		if (a == tritsBits::trit::F || b == tritsBits::trit::F) return tritsBits::trit::F;
 		else if (a == tritsBits::trit::T && b == tritsBits::trit::T) return tritsBits::trit::T;
 		return tritsBits::trit::U;
 	}
 
-	trit OrOperation(trit a, trit b) {
+	trit operator |(trit a, trit b) {
 		if (a == tritsBits::trit::T || b == tritsBits::trit::T) return tritsBits::trit::T;
 		else if (a == tritsBits::trit::F && b == tritsBits::trit::F) return tritsBits::trit::F;
 		return tritsBits::trit::U;
 	}
 
-	trit NotOperation(trit a) {
+	trit operator ~(trit a) {
 		if (a == tritsBits::trit::T) return tritsBits::trit::F;
 		if (a == tritsBits::trit::F) return tritsBits::trit::T;
 		return tritsBits::trit::U;
 	}
 
+	std::ostream& operator << (std::ostream& cout, tritsBits::trit trit) {
+
+		switch (trit) {
+		case tritsBits::trit::U:
+			cout << "U";
+			break;
+		case tritsBits::trit::F:
+			cout << "F";
+			break;
+		case tritsBits::trit::T:
+			cout << "T";
+			break;
+		}
+
+		return cout;
+	}
 }

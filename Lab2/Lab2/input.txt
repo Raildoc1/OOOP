@@ -2,5 +2,7 @@ desc
 1 = replace abc *
 2 = grep braab
 3 = sort
+0 = readfile in.txt
+5 = writefile out.txt
 csed
-1 -> 2 -> 3
+0 -> 1 -> 2 -> 3 -> 5
