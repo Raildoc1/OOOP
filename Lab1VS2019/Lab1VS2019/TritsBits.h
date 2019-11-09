@@ -8,8 +8,6 @@
 
 namespace tritsBits {
 
-	//enum trit { T, F, U };
-
 	enum class trit : int {
 		T = 1,
 		F = -1,

@@ -33,16 +33,13 @@ namespace tritset {
 		private:
 
 			TritSet* tritSet;
-		
 
 			unsigned index;
 	
-
 		public:
 
 			Ref(unsigned index,TritSet* tritSet) : index(index), tritSet(tritSet) { }
 			
-
 			Ref& operator = (tritsBits::trit trit) {
 				tritSet->SetTrit(index, trit);
 				return *this;
@@ -53,25 +50,9 @@ namespace tritset {
 				return *this;
 			}
 
-			//bool operator == (Ref& ref) {
-			//	if (tritsBits::GetTrit(ref.cell, ref.localIndex) == tritsBits::GetTrit(this->cell, this->localIndex)) return true;
-			//	return false;
-			//}
-
-			//bool operator == (const tritsBits::trit trit) {
-			//	if (trit == tritsBits::GetTrit(this->cell, this->localIndex)) return true;
-			//	return false;
-			//}
-
 			operator tritsBits::trit() const {
 				return tritSet->GetTrit(index);
 			}
-
-
-
-			//tritsBits::trit operator & (tritsBits::trit trit);
-			//tritsBits::trit operator | (tritsBits::trit trit);
-			//tritsBits::trit operator ~ ();
 
 		};
 
@@ -104,7 +85,7 @@ namespace tritset {
 		std::unordered_map< tritsBits::trit, int > cardinality();
 
 	};
-	std::ostream& operator << (std::ostream& cout, const TritSet::Ref &trit);
 
+	std::ostream& operator << (std::ostream& cout, const TritSet::Ref &trit);
 }
 

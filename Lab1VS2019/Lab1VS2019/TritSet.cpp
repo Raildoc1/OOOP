@@ -127,12 +127,7 @@ namespace tritset {
 	}
 
 	TritSet::Ref TritSet::operator[](const unsigned index) {
-
-		
-
 			return TritSet::Ref(index, this);
-
-
 	}
 
 	tritsBits::trit TritSet::operator[](const unsigned index) const {
@@ -260,23 +255,9 @@ namespace tritset {
 		memory = obj.memory;
 		obj.memory = nullptr;
 	}
-	 /*
-	tritsBits::trit TritSet::Ref::operator&(tritsBits::trit trit) {
-		return tritsBits::AndOperation(tritsBits::GetTrit(cell, localIndex), trit);
+
+	std::ostream& operator << (std::ostream& cout, const TritSet::Ref& ref) {
+		cout << (tritsBits::trit)ref;
+		return cout;
 	}
-
-	tritsBits::trit TritSet::Ref::operator|(tritsBits::trit trit) {
-		return tritsBits::OrOperation(tritsBits::GetTrit(cell, localIndex), trit);
-	}
-
-	tritsBits::trit TritSet::Ref::operator~() {
-		return tritsBits::NotOperation(tritsBits::GetTrit(cell, localIndex));
-	}*/
-
-	 std::ostream& operator << (std::ostream& cout, const TritSet::Ref& ref) {
-		 cout << (tritsBits::trit)ref;
-		 return cout;
-	 }
-
-
 }
