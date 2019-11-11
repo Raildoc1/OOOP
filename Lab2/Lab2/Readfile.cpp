@@ -7,13 +7,15 @@ std::string Readfile::execute(std::string & text) {
 	if (!fin) {
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleTextAttribute(hConsole, 12); // Red Color
-		std::cout << "[Error]:   ";
+		std::cout << "[Error]: ";
 		SetConsoleTextAttribute(hConsole, 15); // White Color
 		std::cout << " Can't open file " << inputFile << "!" << std::endl;
 		exit(0);
 	}
 
 	std::string output((std::istreambuf_iterator<char>(fin)), std::istreambuf_iterator<char>());
+
+	fin.close();
 
 	return output;
 }

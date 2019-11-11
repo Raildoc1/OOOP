@@ -6,7 +6,16 @@ void Executor::ExecuteWorkFlow(std::string fileName) {
 
 	Parser parser;
 
-	parser.readCommands(fileName, commands, executeOrder);
+	try {
+		parser.readCommands(fileName, commands, executeOrder);
+	} catch (std::string e) {
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(hConsole, 12); // Red Color
+		std::cout << "[Error]: ";
+		SetConsoleTextAttribute(hConsole, 15); // White Color
+		std::cout << " " << e << std::endl;
+		exit(0);
+	}
 
 	// Execute
 
@@ -35,7 +44,16 @@ void Executor::ExecuteWorkFlow(std::string fileName, std::string in, std::string
 
 	Parser parser;
 
-	parser.readCommands(fileName, commands, executeOrder);
+	try {
+		parser.readCommands(fileName, commands, executeOrder);
+	} catch (std::string e) {
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(hConsole, 12); // Red Color
+		std::cout << "[Error]: ";
+		SetConsoleTextAttribute(hConsole, 15); // White Color
+		std::cout << " " << e << std::endl;
+		exit(0);
+	}
 
 	// Execute
 
