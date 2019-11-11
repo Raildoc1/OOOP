@@ -16,6 +16,9 @@
     <Filter Include="Исходные файлы\Messages">
       <UniqueIdentifier>{bf50b5e3-03a6-484c-81e8-a816ce27c713}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Factory">
+      <UniqueIdentifier>{af8bf281-cc44-4160-9a9d-e60739a260e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Readfile.cpp">
@@ -51,11 +54,14 @@
     <ClCompile Include="Replace.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="CommandFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Worker.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Readfile.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -82,6 +88,18 @@
     </ClInclude>
     <ClInclude Include="Replace.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommandMaker.h">
+      <Filter>Файлы заголовков\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMaker.h">
+      <Filter>Файлы заголовков\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandFactory.h">
+      <Filter>Файлы заголовков\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

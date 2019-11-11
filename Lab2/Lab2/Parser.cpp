@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-void Parser::readCommands(std::string& fileName, std::vector<Worker*>& commands, std::vector<int>& executeOrder) {
+void Parser::readCommands(std::string& fileName, std::vector<ICommand*>& commands, std::vector<int>& executeOrder) {
 
 	std::ifstream fin(fileName);
 
@@ -29,7 +29,8 @@ void Parser::readCommands(std::string& fileName, std::vector<Worker*>& commands,
 		std::string key = sCommand.substr(0, sCommand.find(" "));
 		std::string parametrs = sCommand.erase(0, 1 + sCommand.find(" "));
 
-		commands[index] = WorkerFactory::GetInstance().Create(key, parametrs);
+		//commands[index] = WorkerFactory::GetInstance().Create(key, parametrs);
+		commands[index] = CommandFactory::Instance().CreateCommand(key, parametrs);
 
 		std::getline(fin, buffer);
 

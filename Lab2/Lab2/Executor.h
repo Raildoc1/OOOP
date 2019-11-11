@@ -10,7 +10,7 @@ private:
 	Executor(const Executor&);
 	Executor& operator = ( Executor&);
 
-	std::vector<Worker*> commands;
+	std::vector<ICommand*> commands;
 	std::vector<int> executeOrder;
 
 	std::string buffer = "";

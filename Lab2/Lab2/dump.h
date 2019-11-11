@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Worker.h"
+#include "ICommand.h"
 
 #include <iostream>
 #include <fstream>
 
-class Dump : public Worker {
+class Dump : public ICommand {
 
 private:
 	std::string outputFile;

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Worker.h"
+#include "ICommand.h"
 
 #include <iostream>
 #include <fstream>
 
-class Grep : public Worker {
+class Grep : public ICommand {
 
 private:
 	std::string word;

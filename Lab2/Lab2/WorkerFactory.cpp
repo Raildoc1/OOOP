@@ -5,7 +5,7 @@ WorkerFactory& WorkerFactory::GetInstance() {
 	return instance;
 }
 
-Worker* WorkerFactory::Create(std::string key, std::string parametrs) const {
+ICommand* WorkerFactory::Create(std::string key, std::string parametrs) const {
 
 	if (key == "readfile") 
 	{

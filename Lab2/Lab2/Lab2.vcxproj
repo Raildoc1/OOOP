@@ -123,6 +123,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandFactory.cpp" />
+    <ClCompile Include="Commands.cpp" />
     <ClCompile Include="dump.cpp" />
     <ClCompile Include="Executor.cpp" />
     <ClCompile Include="grep.cpp" />
@@ -136,14 +138,17 @@
     <ClCompile Include="Writefile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommandFactory.h" />
+    <ClInclude Include="CommandMaker.h" />
     <ClInclude Include="dump.h" />
     <ClInclude Include="Executor.h" />
     <ClInclude Include="grep.h" />
+    <ClInclude Include="ICommandMaker.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Readfile.h" />
     <ClInclude Include="Replace.h" />
     <ClInclude Include="Sort.h" />
-    <ClInclude Include="Worker.h" />
+    <ClInclude Include="ICommand.h" />
     <ClInclude Include="WorkerFactory.h" />
     <ClInclude Include="Writefile.h" />
   </ItemGroup>

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Worker.h"
+#include "ICommand.h"
 
 #include <fstream>
 
-class Writefile : public Worker {
+class Writefile : public ICommand {
 
 private:
 	std::string outputFile;

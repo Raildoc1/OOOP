@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Worker.h"
+#include "ICommand.h"
 
 #include "Writefile.h"
 #include "Readfile.h"
@@ -13,7 +13,7 @@ class WorkerFactory {
 
 public:
 	static WorkerFactory& GetInstance();
-	Worker* Create(std::string key, std::string parametrs) const;
+	ICommand* Create(std::string key, std::string parametrs) const;
 
 };
 

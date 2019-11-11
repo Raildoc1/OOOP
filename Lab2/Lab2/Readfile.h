@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Worker.h"
+#include "ICommand.h"
 
 #include <iostream>
 #include <fstream>
 
-class Readfile : public Worker {
+class Readfile : public ICommand {
 
 private:
 	std::string inputFile;

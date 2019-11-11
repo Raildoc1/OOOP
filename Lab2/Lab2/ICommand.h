@@ -7,7 +7,7 @@
 
 #include "ColorMessages.h"
 
-class Worker {
+class ICommand {
 public:
 	virtual std::string execute(std::string & text) = 0;
 };

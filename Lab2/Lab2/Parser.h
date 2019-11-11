@@ -1,6 +1,6 @@
 #pragma once
 
-#include "WorkerFactory.h"
+#include "CommandFactory.h"
 
 #include <string>
 #include <iostream>
@@ -13,6 +13,6 @@ private:
 public:
 	Parser() {}
 	~Parser() {}
-	void readCommands(std::string& fileName, std::vector<Worker*>& commands, std::vector<int> & executeOrder);
+	void readCommands(std::string& fileName, std::vector<ICommand*>& commands, std::vector<int> & executeOrder);
 };
 

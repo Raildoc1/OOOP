@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 	catch (std::string e) {
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleTextAttribute(hConsole, 12); // Red Color
-		std::cout << "[Error]:   ";
+		std::cout << "[Error]: ";
 		SetConsoleTextAttribute(hConsole, 15); // White Color
 		std::cout << " " << e << std::endl;
 		exit(0);
