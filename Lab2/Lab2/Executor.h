@@ -20,8 +20,9 @@ public:
 		return instance;
 	}
 
-	void ExecuteWorkFlow(std::string fileName);
-	void ExecuteWorkFlow(std::string fileName, std::string in, std::string out);
+	//void ExecuteWorkFlow(std::string fileName);
+	//void ExecuteWorkFlow(std::string fileName, std::string in, std::string out);
+	void ExecuteWorkFlow(std::string fileName, ICommand* in = nullptr, ICommand* out = nullptr);
 
 };
 

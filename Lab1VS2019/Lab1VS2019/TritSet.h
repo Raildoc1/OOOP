@@ -35,10 +35,12 @@ namespace tritset {
 			TritSet* tritSet;
 
 			unsigned index;
+
+			Ref(unsigned index, TritSet* tritSet) : index(index), tritSet(tritSet) { }
+			friend class TritSet;
 	
 		public:
 
-			Ref(unsigned index,TritSet* tritSet) : index(index), tritSet(tritSet) { }
 			
 			Ref& operator = (tritsBits::trit trit) {
 				tritSet->SetTrit(index, trit);
