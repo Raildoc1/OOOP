@@ -1,9 +1,13 @@
-﻿#include <windows.h>
-#include <iostream>
+﻿#include <iostream>
+#include <windows.h>
 
 #include "RandomTetraminoGenerator.h"
+#include "Field.h"
+
 
 int main() {
+
+	const int UPDATES_IN_FRAME = 50000000;
 
 	static Tetramino T(0, 1, 2, 5);
 	static Tetramino Z(0, 1, 5, 6);
@@ -53,19 +57,89 @@ int main() {
 		{200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188}
 	};
 
-	for (int i = 0; i < 255; i++)
+	bool running = true;
+
+	int count = 0;
+
+	/*for (int i = 0; i < 255; i++)
 	{
 		std::cout << i << " - " << static_cast<char>(i) << std::endl;
-	}
+	}*/
 
-	//system("cls");
+	Field player1;
+	Field player2;
 
-	for (int i = 0; i < 29; i++) {
-		for (int j = 0; j < 23; j++) {
-			std::cout << static_cast<char>(field[i][j]);
+	while (running) {
+		if ((count++) > UPDATES_IN_FRAME) {
+
+			player1.Update();
+			player2.Update();
+
+			switch (rand() % 3) {
+				case 0: player1.MoveLeft();
+					break;
+				case 1: player1.MoveRight();
+					break;
+				case 2: player1.Rotate();
+					break;
+			}
+
+			switch (rand() % 3) {
+			case 0: player2.MoveLeft();
+				break;
+			case 1: player2.MoveRight();
+				break;
+			case 2: player2.Rotate();
+				break;
+			}
+
+			for (int i = 0; i < 20; i++) {
+				for (int j = 0; j < Field::FIELD_WIDTH; j++) {
+					field[8 + i][1 + j] = player1.GetSymbol(i + (Field::FIELD_HEIGHT - 20), j) == 1 || player1.GetSymbol(i + (Field::FIELD_HEIGHT - 20), j) == 2 ? 254 : 32;
+					field[8 + i][12 + j] = player2.GetSymbol(i + (Field::FIELD_HEIGHT - 20), j) == 1 || player2.GetSymbol(i + (Field::FIELD_HEIGHT - 20), j) == 2 ? 254 : 32;
+				}
+			}
+
+			system("cls");
+			for (int i = 0; i < 29; i++) {
+				for (int j = 0; j < 23; j++) {
+					std::cout << static_cast<char>(field[i][j]);
+				}
+				std::cout << std::endl;
+			}
+
+			for (int i = 0; i < Field::FIELD_WIDTH; i++) {
+				if (player1.GetSymbol((Field::FIELD_HEIGHT - 21), i) == 1) running = false;
+				if (player2.GetSymbol((Field::FIELD_HEIGHT - 21), i) == 1) running = false;
+			}
+
+			/*system("cls");
+
+			for (int i = 0; i < Field::FIELD_HEIGHT; i++) {
+				for (int j = 0; j < Field::FIELD_WEIDTH; j++) {
+					switch (player1.GetSymbol(i, j))
+					{
+					case 1: std::cout << static_cast<char>(66);
+						break;
+					case 2: std::cout << static_cast<char>(77);
+						break;
+					case 3: std::cout << static_cast<char>(42);
+						break;
+					default: std::cout << static_cast<char>(32);
+						break;
+					}
+				}
+				std::cout << std::endl;
+			}*/
+
+			count = 0;
 		}
-		std::cout << std::endl;
+
 	}
+
+	system("cls");
+
+	std::cout << "GAME OVER!";
 
 	return 0;
 }
