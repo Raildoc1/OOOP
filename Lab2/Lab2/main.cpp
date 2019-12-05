@@ -30,7 +30,13 @@ int main(int argc, char* argv[]) {
 		else if (std::string(argv[4]) == "-o") oParam = std::string(argv[5]);
 	}
 
-	if(iParam != "" || oParam != "") Executor::GetInstance().ExecuteWorkFlow(std::string(argv[1]), iParam, oParam);
+	ICommand* in = nullptr;
+	ICommand* out = nullptr;
+
+	if(iParam != "") in = CommandFactory::Instance().CreateCommand("readfile", iParam);
+	if (oParam != "") out = CommandFactory::Instance().CreateCommand("writefile", oParam);
+
+	if(iParam != "" || oParam != "") Executor::GetInstance().ExecuteWorkFlow(std::string(argv[1]), in, out);
 	else Executor::GetInstance().ExecuteWorkFlow(std::string(argv[1]));
 
 	return 0;
