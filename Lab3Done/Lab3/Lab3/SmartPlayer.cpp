@@ -2,6 +2,8 @@
 
 void SmartPlayer::Update() {
 
+	if (!inGame) return;
+
 	field->Update();
 
 	/*std::string currentTetramino = "";

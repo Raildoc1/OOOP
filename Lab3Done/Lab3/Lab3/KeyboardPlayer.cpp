@@ -2,6 +2,8 @@
 
 void KeyboardPlayer::Update() {
 
+	if (!inGame) return;
+
 	field->Update();
 
 	if (GetAsyncKeyState(65)) {

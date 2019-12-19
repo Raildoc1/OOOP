@@ -2,6 +2,8 @@
 
 void RandomPlayer::Update() {
 
+	if (!inGame) return;
+
 	field->Update();
 
 	srand(time(NULL));

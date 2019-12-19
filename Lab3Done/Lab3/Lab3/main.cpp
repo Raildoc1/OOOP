@@ -98,17 +98,33 @@ int main() {
 			}
 
 			for (int i = 0; i < Field::FIELD_WIDTH; i++) {
-				if (player1.GetSymbol((Field::FIELD_HEIGHT - 21), i) == 1) running = false;
-				if (player2.GetSymbol((Field::FIELD_HEIGHT - 21), i) == 1) running = false;
+				if (player1.GetSymbol((Field::FIELD_HEIGHT - 21), i) == 1) player1.inGame = false;
+				if (player2.GetSymbol((Field::FIELD_HEIGHT - 21), i) == 1) player2.inGame = false;
+			}
+
+			if (!player1.inGame) {
+				if (player1.GetScore() <= player2.GetScore()) {
+					system("cls");
+					std::cout << "Player 2 Win!" << std::endl << std::endl;
+					std::cout << "Player 1 Score: " << player1.GetScore() << std::endl;
+					std::cout << "Player 2 Score: " << player2.GetScore() << std::endl;
+					return 0;
+				}
+			}
+
+			if (!player2.inGame) {
+				if (player2.GetScore() <= player1.GetScore()) {
+					system("cls");
+					std::cout << "Player 1 Win!" << std::endl << std::endl;
+					std::cout << "Player 1 Score: " << player1.GetScore() << std::endl;
+					std::cout << "Player 2 Score: " << player2.GetScore() << std::endl;
+					return 0;
+				}
 			}
 
 			count = 0;
 		}
 	}
-
-	system("cls");
-
-	std::cout << "GAME OVER!";
 
 	return 0;
 }
