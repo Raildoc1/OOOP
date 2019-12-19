@@ -2,12 +2,13 @@
 #include <windows.h>
 
 #include "RandomTetraminoGenerator.h"
-#include "Field.h"
-
+#include "KeyboardPlayer.h"
+#include "RandomPlayer.h"
+#include "SmartPlayer.h"
 
 int main() {
 
-	const int UPDATES_IN_FRAME = 25'000'000;
+	const int UPDATES_IN_FRAME = 50'000'000;
 
 	static Tetramino T(0, 1, 2, 5);
 	static Tetramino Z(0, 1, 5, 6);
@@ -63,33 +64,14 @@ int main() {
 
 	int count = 500000000;
 
-	Field player1;
-	Field player2;
+	SmartPlayer player1;
+	KeyboardPlayer player2;
 
 	while (running) {
 		if ((count++) > UPDATES_IN_FRAME) {
 
 			player1.Update();
 			player2.Update();
-
-			switch (rand() % 3) {
-				case 0: player1.MoveLeft();
-					break;
-				case 1: player1.MoveRight();
-					break;
-				case 2: player1.Rotate();
-					break;
-			}
-
-			if (GetAsyncKeyState(65)) {
-				player2.MoveLeft();
-			}
-			else if (GetAsyncKeyState(68)) {
-				player2.MoveRight();
-			}
-			else if (GetAsyncKeyState(82)) {
-				player2.Rotate();
-			}
 
 			for (int i = 0; i < 20; i++) {
 				for (int j = 0; j < Field::FIELD_WIDTH; j++) {

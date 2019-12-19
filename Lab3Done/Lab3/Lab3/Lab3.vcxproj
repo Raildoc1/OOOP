@@ -124,13 +124,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="KeyboardPlayer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RandomPlayer.cpp" />
     <ClCompile Include="RandomTetraminoGenerator.cpp" />
+    <ClCompile Include="SmartPlayer.cpp" />
     <ClCompile Include="Tetramino.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h" />
+    <ClInclude Include="KeyboardPlayer.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RandomPlayer.h" />
     <ClInclude Include="RandomTetraminoGenerator.h" />
+    <ClInclude Include="SmartPlayer.h" />
     <ClInclude Include="Tetramino.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

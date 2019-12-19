@@ -1,4 +1,6 @@
 #pragma once
+#include "RandomTetraminoGenerator.h"
+
 class Field {
 private:
 
@@ -45,5 +47,8 @@ public:
 	int GetSymbol(int i, int j);
 	int GetScore() { return score; }
 	int GetLines() { return lines; }
+	bool IsMoving() { return moving; }
+
+	Tetramino* GetTetramino() { return currentTetramino; }
 };
 
