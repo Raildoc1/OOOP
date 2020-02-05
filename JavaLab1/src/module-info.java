@@ -1,0 +1,2 @@
+module JavaLab1 {
+}
