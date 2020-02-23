@@ -1,0 +1,6 @@
+SUM StackCalculator.Command.Sum
+INV StackCalculator.Command.Invert
+DEFINE StackCalculator.Command.Define
+PUSH StackCalculator.Command.Push
+PRINT StackCalculator.Command.Print
+SQRT StackCalculator.Command.Sqrt
