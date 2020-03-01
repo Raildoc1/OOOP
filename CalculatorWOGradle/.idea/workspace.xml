@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="936d8169-9a5c-45b3-9c94-23ca81ea942b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1YWSq31lxQtSjaSVhKpXvzNzpch" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="StackCalculator" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\dev\NSU\Github\OOOP\untitled" />
+      <recent name="E:\dev\NSU\Github\OOOP\untitled\src\main\java\StackCalculator" />
+      <recent name="E:\dev\NSU\Github\OOOP\untitled\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.CalculatorTest">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StackCalculator.Main" />
+      <module name="CalculatorWOGradle" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="StackCalculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CalculatorWOGradle" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="StackCalculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="StackCalculator" />
+      <option name="MAIN_CLASS_NAME" value="StackCalculator.CalculatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CalculatorTest" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="936d8169-9a5c-45b3-9c94-23ca81ea942b" name="Default Changelist" comment="" />
+      <created>1583057044141</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583057044141</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="784" y="470" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1583057532535">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="784" y="470" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583057532535" />
+    <state x="761" y="410" width="398" height="266" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1583057470046">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="761" y="410" width="398" height="266" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1080@0.0.1920.1080" timestamp="1583057470046" />
+    <state x="761" y="430" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1583057533616">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="761" y="430" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1080@0.0.1920.1080" timestamp="1583057533616" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1583058363676">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583058363676" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1583058363676">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583058363676" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1583058363676">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583058363676" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1583058363676">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583058363676" />
+    <state x="440" y="118" key="SettingsEditor" timestamp="1583058275327">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="440" y="118" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1583058275327" />
+    <state x="664" y="442" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1583058264154">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="664" y="442" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1080@0.0.1920.1080" timestamp="1583058264154" />
+  </component>
+</project>
