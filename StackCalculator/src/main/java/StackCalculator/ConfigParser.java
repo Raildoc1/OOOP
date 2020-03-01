@@ -20,6 +20,7 @@ public class ConfigParser {
         String line;
 
         while((line = reader.readLine()) != null) {
+            if(line.charAt(0) == '#') continue;
             String[] lineParts = line.split(" ");
             if(lineParts.length != 2) throw new WrongConfigFileFormat(line, "<Name> <Operation> (Example: \"Sum +\")");
             map.put(lineParts[0], lineParts[1]);

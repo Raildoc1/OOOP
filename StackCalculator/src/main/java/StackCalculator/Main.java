@@ -17,28 +17,16 @@ public class Main {
         Calculator calculator = new Calculator();
         try {
             calculator.ExecuteCommands("in.txt", "cfg.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
         } catch (WrongConfigFileFormat wrongConfigFileFormat) {
             wrongConfigFileFormat.PrintError();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (CommandNotFound commandNotFound) {
-            commandNotFound.printStackTrace();
         } catch (WrongAmountOfArguments wrongAmountOfArguments) {
             wrongAmountOfArguments.PrintArguments();
         } catch (VarNameHasAlreadyExist varNameHasAlreadyExist) {
             varNameHasAlreadyExist.PrintError();
         } catch (UndefinedVariable undefinedVariable) {
             undefinedVariable.PrintError();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -16,7 +16,7 @@ public class Calculator {
     }
 
     // Stack
-    public void ExecuteCommands(String fileName, String configFileName) throws IOException, NoSuchMethodException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException, CommandNotFound, WrongAmountOfArguments, UndefinedVariable, VarNameHasAlreadyExist {
+    public void ExecuteCommands(String fileName, String configFileName) throws IOException, NoSuchMethodException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException, CommandNotFound, WrongAmountOfArguments, UndefinedVariable, VarNameHasAlreadyExist, ArithmeticException {
 
         CommandStream commandStream;
 

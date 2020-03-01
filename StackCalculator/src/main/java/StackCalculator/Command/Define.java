@@ -6,7 +6,7 @@ import StackCalculator.CalcMemory;
 
 public class Define implements ICommand {
 
-    String args;
+    private String args;
 
     @Override
     public retValue Execute(String[] args) throws WrongAmountOfArguments, NumberFormatException, VarNameHasAlreadyExist {
