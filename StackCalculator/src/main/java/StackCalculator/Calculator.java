@@ -9,7 +9,7 @@ import java.util.Stack;
 
 public class Calculator {
 
-    Stack<Double> stack;
+    private Stack<Double> stack;
 
     public Calculator () {
         stack = new Stack<Double>();
