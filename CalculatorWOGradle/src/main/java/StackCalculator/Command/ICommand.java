@@ -6,6 +6,8 @@ import StackCalculator.Exceptions.WrongAmountOfArguments;
 
 public interface ICommand {
 
+    public static final boolean DEV_MODE = true;
+
     retValue Execute(String[] args) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable;
 
     public void putArgs(String args);

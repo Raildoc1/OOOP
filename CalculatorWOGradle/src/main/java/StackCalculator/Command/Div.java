@@ -10,8 +10,9 @@ public class Div implements ICommand {
         if(args.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
         double a = Double.parseDouble(args[0]);
         double b = Double.parseDouble(args[1]);
-        if (a == 0) throw new ArithmeticException();
-        return new ICommand.retValue(b / a);
+        if (b == 0) throw new ArithmeticException();
+        if (DEV_MODE) System.out.println(a + " / " + b + " = " + (a / b));
+        return new ICommand.retValue(a / b);
     }
 
     @Override

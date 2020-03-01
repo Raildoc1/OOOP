@@ -30,4 +30,8 @@ public class CalcMemory {
         if(memory.get(name) == null) throw new UndefinedVariable(name);
         return memory.get(name);
     }
+
+    public void reset() {
+        instance = null;
+    }
 }
