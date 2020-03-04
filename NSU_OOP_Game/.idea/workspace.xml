@@ -26,14 +26,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RunManager">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Core.Game" />
+      <option name="MAIN_CLASS_NAME" value="core.Game" />
       <module name="NSU_OOP_Game" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Core.*" />
+          <option name="PATTERN" value="core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -59,5 +60,27 @@
       <updated>1583331590656</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1583336515028">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583336515028" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1583336515028">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583336515028" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1583336515028">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583336515028" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1583336515028">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583336515028" />
+    <state x="690" y="303" key="extract.method.dialog" timestamp="1583334755789">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="690" y="303" key="extract.method.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583334755789" />
   </component>
 </project>
