@@ -25,7 +25,6 @@ public class CalculatorTest {
 
             assertTrue(Math.abs(actual - expected) < epsilon);
 
-            CalcMemory.getInstance().reset();
         }
 
         {
@@ -41,7 +40,6 @@ public class CalculatorTest {
 
             assertTrue(Math.abs(actual - expected) < epsilon);
 
-            CalcMemory.getInstance().reset();
         }
 
         {
@@ -57,7 +55,6 @@ public class CalculatorTest {
 
             assertTrue(Math.abs(actual - expected) < epsilon);
 
-            CalcMemory.getInstance().reset();
         }
     }
 

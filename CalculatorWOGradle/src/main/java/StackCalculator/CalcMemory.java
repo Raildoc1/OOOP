@@ -10,14 +10,7 @@ public class CalcMemory {
 
     private Map<String, Double> memory;
 
-    public static CalcMemory instance;
-
-    public static CalcMemory getInstance() {
-        if(instance == null) instance = new CalcMemory();
-        return instance;
-    }
-
-    private CalcMemory() {
+    public CalcMemory() {
         memory = new HashMap<String, Double>();
     }
 
@@ -29,9 +22,5 @@ public class CalcMemory {
     public double get(String name) throws UndefinedVariable {
         if(memory.get(name) == null) throw new UndefinedVariable(name);
         return memory.get(name);
-    }
-
-    public void reset() {
-        instance = null;
     }
 }

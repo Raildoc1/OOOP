@@ -10,8 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class CommandStream {
 
-    BufferedReader reader;
-    CommandFactory factory;
+    private BufferedReader reader;
+    private CommandFactory factory;
 
     public CommandStream(String configFileName) throws NoSuchMethodException, IOException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
         factory = new CommandFactory(configFileName);

@@ -1,5 +1,6 @@
 package StackCalculator.Command;
 
+import StackCalculator.CalcMemory;
 import StackCalculator.Exceptions.UndefinedVariable;
 import StackCalculator.Exceptions.VarNameHasAlreadyExist;
 import StackCalculator.Exceptions.WrongAmountOfArguments;
@@ -8,7 +9,7 @@ public interface ICommand {
 
     public static final boolean DEV_MODE = true;
 
-    retValue Execute(String[] args) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable;
+    retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable;
 
     public void putArgs(String args);
 

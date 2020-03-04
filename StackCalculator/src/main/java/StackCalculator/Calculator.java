@@ -48,4 +48,8 @@ public class Calculator {
     public void ExecuteCommands(String configFileName) throws IOException, NoSuchMethodException, CommandNotFound, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException, WrongAmountOfArguments, UndefinedVariable, VarNameHasAlreadyExist {
         ExecuteCommands("", configFileName);
     }
+
+    public double getStackTop() {
+        return stack.peek();
+    }
 }

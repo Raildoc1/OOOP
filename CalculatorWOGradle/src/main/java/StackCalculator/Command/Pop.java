@@ -10,11 +10,11 @@ public class Pop implements ICommand {
     private String args;
 
     @Override
-    public retValue Execute(String[] args) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
+    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
         if(args.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
         String name = this.args;
         double value = Double.parseDouble(args[0]);
-        CalcMemory.getInstance().put(name, value);
+        memory.put(name, value);
         return new ICommand.retValue();
     }
 

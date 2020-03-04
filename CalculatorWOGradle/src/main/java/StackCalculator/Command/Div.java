@@ -1,12 +1,13 @@
 package StackCalculator.Command;
 
+import StackCalculator.CalcMemory;
 import StackCalculator.Exceptions.UndefinedVariable;
 import StackCalculator.Exceptions.VarNameHasAlreadyExist;
 import StackCalculator.Exceptions.WrongAmountOfArguments;
 
 public class Div implements ICommand {
     @Override
-    public retValue Execute(String[] args) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable, ArithmeticException {
+    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable, ArithmeticException {
         if(args.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
         double a = Double.parseDouble(args[0]);
         double b = Double.parseDouble(args[1]);

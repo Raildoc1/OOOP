@@ -12,6 +12,16 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -49,7 +59,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.CalculatorTest">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <output_file path="$PROJECT_DIR$/out.txt" is_save="true" />
       <option name="MAIN_CLASS_NAME" value="StackCalculator.Main" />
@@ -64,12 +74,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CalculatorTest" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;StackCalculator.CalculatorTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;StackCalculator.CalculatorTest&quot; --scan" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -79,12 +89,12 @@
             <option value=":test" />
           </list>
         </option>
-        <option name="vmOptions" />
+        <option name="vmOptions" value="" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="CalculatorTest.executeCommands" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CalculatorTest.executeCommands" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -106,15 +116,9 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.CalculatorTest.executeCommands" />
       <item itemvalue="Gradle.CalculatorTest" />
+      <item itemvalue="Gradle.CalculatorTest.executeCommands" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.CalculatorTest" />
-        <item itemvalue="Gradle.CalculatorTest.executeCommands" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -130,10 +134,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="202" key="#Project_Structure" timestamp="1582488959772">
+    <state x="1171" y="208" key="#CalculatorTest" timestamp="1583056892795">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="202" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1582488959772" />
+    <state x="1171" y="208" key="#CalculatorTest/0.0.1920.1080@0.0.1920.1080" timestamp="1583056892795" />
+    <state x="552" y="202" key="#Inspections" timestamp="1583053873430">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="202" key="#Inspections/0.0.1920.1080@0.0.1920.1080" timestamp="1583053873430" />
+    <state x="552" y="202" key="#Project_Structure" timestamp="1583058046238">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="202" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1583058046238" />
     <state x="414" y="199" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583033022444">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -162,54 +174,58 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="298" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1583032959876" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1583033694196">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1583065513680">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583033694196" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1583033694196">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513680" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1583065513680">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583033694196" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1583033694196">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513680" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1583065513679">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583033694196" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1583033694196">
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513679" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1583065513680">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583033694196" />
-    <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1583033502254">
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513680" />
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1583065513677">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583033502254" />
-    <state width="1877" height="363" key="GridCell.Tab.1.center" timestamp="1583033502254">
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513677" />
+    <state width="1877" height="363" key="GridCell.Tab.1.center" timestamp="1583065513677">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583033502254" />
-    <state width="1877" height="363" key="GridCell.Tab.1.left" timestamp="1583033502254">
+    <state width="1877" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513677" />
+    <state width="1877" height="363" key="GridCell.Tab.1.left" timestamp="1583065513677">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583033502254" />
-    <state width="1877" height="363" key="GridCell.Tab.1.right" timestamp="1583033502254">
+    <state width="1877" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513677" />
+    <state width="1877" height="363" key="GridCell.Tab.1.right" timestamp="1583065513677">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583033502254" />
+    <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583065513677" />
     <state x="463" y="186" key="SettingsEditor" timestamp="1583032876336">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="463" y="186" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1583032876336" />
-    <state x="668" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1583030848836">
+    <state x="668" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1583065558482">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="668" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583030848836" />
-    <state x="731" y="261" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1583033259119">
+    <state x="668" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583065558482" />
+    <state x="731" y="261" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1583055966582">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="731" y="261" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583033259119" />
+    <state x="731" y="261" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583055966582" />
     <state x="667" y="174" width="586" height="732" key="find.popup" timestamp="1582004334100">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="667" y="174" width="586" height="732" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1582004334100" />
+    <state x="342" y="159" key="new project wizard" timestamp="1583056985390">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="342" y="159" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1583056985390" />
     <state x="702" y="166" key="refactoring.ChangeSignatureDialog" timestamp="1581850985202">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -217,5 +233,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/StackCalculator$CalculatorTest.ic" NAME="CalculatorTest Coverage Results" MODIFIED="1583033569244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/StackCalculator$CalculatorTest_executeCommands.ic" NAME="CalculatorTest.executeCommands Coverage Results" MODIFIED="1583056560818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

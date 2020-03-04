@@ -10,9 +10,9 @@ public class Push implements ICommand {
     String args;
 
     @Override
-    public retValue Execute(String[] args) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
+    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
         if(args!= null) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
-        double value = CalcMemory.getInstance().get(this.args);
+        double value = memory.get(this.args);
         return new retValue(value);
     }
 

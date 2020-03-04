@@ -10,9 +10,11 @@ import java.util.Stack;
 public class Calculator {
 
     private Stack<Double> stack;
+    private CalcMemory memory;
 
     public Calculator () {
         stack = new Stack<Double>();
+        memory = new CalcMemory();
     }
 
     // Stack
@@ -31,13 +33,13 @@ public class Calculator {
         while((command = commandStream.NextCommand()) != null) {
             ICommand.retValue result;
             int argsAmount = command.GetArgumentsAmount();
-            if(argsAmount == 0) result = command.Execute(null);
+            if(argsAmount == 0) result = command.Execute(null, memory);
             else {
                 String[] args = new String[argsAmount];
                 for(int i = argsAmount - 1; i >= 0; i--) {
                     args[i] = stack.pop().toString();
                 }
-                result = command.Execute(args);
+                result = command.Execute(args, memory);
             }
             if(result.hasValue) stack.push(result.value);
         }
