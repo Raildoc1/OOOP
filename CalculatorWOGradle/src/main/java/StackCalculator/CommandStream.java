@@ -11,26 +11,23 @@ import java.lang.reflect.InvocationTargetException;
 public class CommandStream {
 
     private BufferedReader reader;
-    private CommandFactory factory;
 
-    public CommandStream(String configFileName) throws NoSuchMethodException, IOException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
-        factory = new CommandFactory(configFileName);
+    public CommandStream() throws NoSuchMethodException, IOException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
         reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public CommandStream(String fileName, String configFileName) throws IOException, NoSuchMethodException, WrongConfigFileFormat, InstantiationException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
-        factory = new CommandFactory(configFileName);
+    public CommandStream(String fileName) throws IOException, NoSuchMethodException, WrongConfigFileFormat, InstantiationException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
         reader = new BufferedReader(new FileReader(fileName));
     }
 
-    public ICommand NextCommand() throws IOException, CommandNotFound {
+    public ICommand NextCommand() throws IOException, CommandNotFound, NoSuchMethodException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
         String line;
         if((line = reader.readLine()) == null) return null;
         String[] tmp = CommandFileParser.split(line);
         if(tmp.length == 1)
-            return factory.CreateCommand(tmp[0], null);
+            return CommandFactory.getInstance().CreateCommand(tmp[0], null);
         else
-            return factory.CreateCommand(tmp[0], tmp[1]);
+            return CommandFactory.getInstance().CreateCommand(tmp[0], tmp[1]);
     }
 
     public void Close() throws IOException {

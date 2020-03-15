@@ -1,0 +1,2 @@
+мар. 15, 2020 11:41:26 PM StackCalculator.Main main
+INFO: Main executed successfully

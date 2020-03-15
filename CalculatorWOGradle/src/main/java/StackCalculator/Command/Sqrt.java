@@ -7,10 +7,10 @@ import StackCalculator.Exceptions.WrongAmountOfArguments;
 
 public class Sqrt implements ICommand {
     @Override
-    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
-        if(args.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
-        if (DEV_MODE) System.out.println("sqrt(" + Double.parseDouble(args[0]) + ") = " + Math.sqrt(Double.parseDouble(args[0])));
-        return new retValue(Math.sqrt(Double.parseDouble(args[0])));
+    public retValue Execute(String[] values, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
+        if(values.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(values, GetArgumentsAmount());
+        if (DEV_MODE) System.out.println("sqrt(" + Double.parseDouble(values[0]) + ") = " + Math.sqrt(Double.parseDouble(values[0])));
+        return new retValue(Math.sqrt(Double.parseDouble(values[0])));
     }
 
     @Override

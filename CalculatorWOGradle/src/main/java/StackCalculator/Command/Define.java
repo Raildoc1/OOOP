@@ -9,8 +9,8 @@ public class Define implements ICommand {
     private String args;
 
     @Override
-    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, NumberFormatException, VarNameHasAlreadyExist {
-        if(args != null) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
+    public retValue Execute(String[] values, CalcMemory memory) throws WrongAmountOfArguments, NumberFormatException, VarNameHasAlreadyExist {
+        if(values != null) throw new WrongAmountOfArguments(values, GetArgumentsAmount());
         String[] NameAndValue = this.args.split(" ", 2);
         String name = NameAndValue[0];
         double value = Double.parseDouble(NameAndValue[1]);

@@ -1,0 +1,18 @@
+# a + b
+SUM StackCalculator.Command.Sum
+# -a
+INV StackCalculator.Command.Invert
+# Define var
+DEFINE StackCalculator.Command.Define
+# Put var on stack
+PUSH StackCalculator.Command.Push
+# Print
+PRINT StackCalculator.Command.Print
+# sqrt(a)
+SQRT StackCalculator.Command.Sqrt
+# a * b
+MUL StackCalculator.Command.Mul
+# b / a
+DIV StackCalculator.Command.Div
+# pop
+POP StackCalculator.Command.Pop

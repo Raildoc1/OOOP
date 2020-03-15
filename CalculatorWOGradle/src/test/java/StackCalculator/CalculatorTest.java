@@ -19,7 +19,7 @@ public class CalculatorTest {
         {
             Calculator calculator = new Calculator();
 
-            calculator.ExecuteCommands("in.txt", "cfg.txt");
+            calculator.ExecuteCommands("src/main/resources/in.txt");
             actual = calculator.getStackTop();
             expected = 2.0;
 
@@ -31,9 +31,9 @@ public class CalculatorTest {
             Calculator calculator = new Calculator();
 
             try {
-                calculator.ExecuteCommands("in1.txt", "cfg.txt");
+                calculator.ExecuteCommands("src/main/resources/in1.txt");
             } catch (VarNameHasAlreadyExist e) {
-                e.PrintError();
+                e.printStackTrace();
             }
             actual = calculator.getStackTop();
             expected = 28.4632;
@@ -46,9 +46,9 @@ public class CalculatorTest {
             Calculator calculator = new Calculator();
 
             try {
-                calculator.ExecuteCommands("in2.txt", "cfg.txt");
+                calculator.ExecuteCommands("src/main/resources/in2.txt");
             } catch (VarNameHasAlreadyExist e) {
-                e.PrintError();
+                e.printStackTrace();
             }
             actual = calculator.getStackTop();
             expected = 13.8888;

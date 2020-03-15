@@ -7,10 +7,10 @@ import StackCalculator.Exceptions.WrongAmountOfArguments;
 
 public class Print implements ICommand {
     @Override
-    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
-        if(args.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
-        System.out.println(args[0]);
-        return new retValue(Double.parseDouble(args[0]));
+    public retValue Execute(String[] values, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
+        if(values.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(values, GetArgumentsAmount());
+        System.out.println(values[0]);
+        return new retValue(Double.parseDouble(values[0]));
     }
 
     @Override

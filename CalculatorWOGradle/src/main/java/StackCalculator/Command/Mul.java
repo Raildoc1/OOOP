@@ -7,10 +7,10 @@ import StackCalculator.Exceptions.WrongAmountOfArguments;
 
 public class Mul implements ICommand {
     @Override
-    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
-        if(args.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
-        double a = Double.parseDouble(args[0]);
-        double b = Double.parseDouble(args[1]);
+    public retValue Execute(String[] values, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable {
+        if(values.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(values, GetArgumentsAmount());
+        double a = Double.parseDouble(values[0]);
+        double b = Double.parseDouble(values[1]);
         if (DEV_MODE) System.out.println(b + " * " + a + " = " + b*a);
         return new ICommand.retValue(a * b);
     }

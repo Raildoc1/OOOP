@@ -9,7 +9,7 @@ public interface ICommand {
 
     public static final boolean DEV_MODE = true;
 
-    retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable;
+    retValue Execute(String[] values, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable;
 
     public void putArgs(String args);
 

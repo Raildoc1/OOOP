@@ -7,10 +7,10 @@ import StackCalculator.Exceptions.WrongAmountOfArguments;
 
 public class Div implements ICommand {
     @Override
-    public retValue Execute(String[] args, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable, ArithmeticException {
-        if(args.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(args, GetArgumentsAmount());
-        double a = Double.parseDouble(args[0]);
-        double b = Double.parseDouble(args[1]);
+    public retValue Execute(String[] values, CalcMemory memory) throws WrongAmountOfArguments, VarNameHasAlreadyExist, UndefinedVariable, ArithmeticException {
+        if(values.length != GetArgumentsAmount()) throw new WrongAmountOfArguments(values, GetArgumentsAmount());
+        double a = Double.parseDouble(values[0]);
+        double b = Double.parseDouble(values[1]);
         if (b == 0) throw new ArithmeticException();
         if (DEV_MODE) System.out.println(a + " / " + b + " = " + (a / b));
         return new ICommand.retValue(a / b);

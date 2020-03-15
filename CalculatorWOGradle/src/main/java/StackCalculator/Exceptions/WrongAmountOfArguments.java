@@ -14,6 +14,7 @@ public class WrongAmountOfArguments extends Exception {
     }
 
     public WrongAmountOfArguments(String[] args, int necessaryArgsAmount) {
+        super("Need " + necessaryArgsAmount + " arguments." + "\nGot " + args.length + " arguments.");
         this.args = args;
         this.necessaryArgsAmount = necessaryArgsAmount;
     }

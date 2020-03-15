@@ -18,16 +18,16 @@ public class Calculator {
     }
 
     // Stack
-    public void ExecuteCommands(String fileName, String configFileName) throws IOException, NoSuchMethodException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException, CommandNotFound, WrongAmountOfArguments, UndefinedVariable, VarNameHasAlreadyExist, ArithmeticException {
+    public void ExecuteCommands(String fileName) throws IOException, NoSuchMethodException, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException, CommandNotFound, WrongAmountOfArguments, UndefinedVariable, VarNameHasAlreadyExist, ArithmeticException {
 
         CommandStream commandStream;
 
         ICommand command;
 
         if(fileName == "") {
-            commandStream = new CommandStream(configFileName);
+            commandStream = new CommandStream();
         } else {
-            commandStream = new CommandStream(fileName, configFileName);
+            commandStream = new CommandStream(fileName);
         }
 
         while((command = commandStream.NextCommand()) != null) {
@@ -47,8 +47,8 @@ public class Calculator {
         commandStream.Close();
     }
 
-    public void ExecuteCommands(String configFileName) throws IOException, NoSuchMethodException, CommandNotFound, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException, WrongAmountOfArguments, UndefinedVariable, VarNameHasAlreadyExist {
-        ExecuteCommands("", configFileName);
+    public void ExecuteCommands() throws IOException, NoSuchMethodException, CommandNotFound, InstantiationException, WrongConfigFileFormat, IllegalAccessException, InvocationTargetException, ClassNotFoundException, WrongAmountOfArguments, UndefinedVariable, VarNameHasAlreadyExist {
+        ExecuteCommands("");
     }
 
     public double getStackTop() {
