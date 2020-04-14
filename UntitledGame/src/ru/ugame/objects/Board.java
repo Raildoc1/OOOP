@@ -27,6 +27,5 @@ public class Board extends GameObject {
     @Override
     public void update() {
         super.update();
-
     }
 }
