@@ -4,10 +4,6 @@ import javax.swing.*;
 
 public abstract class GameObject implements DefaultBehaviour {
 
-    public GameObject() {
-        Game.registerGameobject(this);
-    }
-
     public ImageIcon getImage() {
         return null;
     }

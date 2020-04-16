@@ -29,6 +29,7 @@ public class Head extends GameObject {
         direction = new Vector2(0, 1);
     }
 
+    /*
     @Override
     public void update() {
 
@@ -49,5 +50,11 @@ public class Head extends GameObject {
 
         System.out.println(direction);
     }
-
+*/
+    public void setPosition(int x, int y) {
+        Vector2 oldPosition =  new Vector2(position.x, position.y);
+        position.x = x % loop_x;
+        position.y = y % loop_y;
+        nextSegment.setPosition(oldPosition, loop_x, loop_y);
+    }
 }

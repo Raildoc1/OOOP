@@ -1,5 +1,7 @@
 package ru.ugame.core;
 
+import ru.ugame.objects.Board;
+
 import javax.swing.*;
 
 public class View extends JFrame {
@@ -9,14 +11,14 @@ public class View extends JFrame {
     private static final int WIN_WIDTH = 250;
     private static final int WIN_HEIGHT = 350;
 
-    GameHandler gameHandler;
+    Board board;
 
-    public View (GameHandler gameHandler) {
-        this.gameHandler = gameHandler;
+    public View (Board board) {
+        this.board = board;
     }
 
     public void init() {
-        add(new GamePanel(gameHandler));
+        add(new GamePanel(board));
 
         setSize(WIN_WIDTH, WIN_HEIGHT);
         setTitle(APP_NAME);

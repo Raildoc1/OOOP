@@ -13,4 +13,10 @@ public class SnakeSegment extends GameObject {
         this.position = position;
     }
 
+    public void setPosition(Vector2 position, int loop_x, int loop_y) {
+        Vector2 oldPosition =  new Vector2(this.position.x, this.position.y);
+        position.x = position.x % loop_x;
+        position.y = position.y % loop_y;
+        nextSegment.setPosition(oldPosition, loop_x, loop_y);
+    }
 }

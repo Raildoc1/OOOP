@@ -1,5 +1,7 @@
 package ru.ugame.core;
 
+import ru.ugame.objects.Board;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class GamePanel extends JPanel implements ActionListener {
 
-    private GameHandler gameHandler;
+    private Board board;
 
     private int WIN_WIDTH = 250;
     private int WIN_HEIGHT = 350;
@@ -20,8 +22,8 @@ public class GamePanel extends JPanel implements ActionListener {
     private Timer timer;
     private final int DELAY = 25;
 
-    public GamePanel(GameHandler gameHandler) {
-        this.gameHandler = gameHandler;
+    public GamePanel(Board board) {
+        this.board = board;
         setBackground(Color.BLACK);
         timer = new Timer(DELAY, this);
         timer.start();
