@@ -1,5 +1,6 @@
 package ru.ugame.core;
 
+import ru.ugame.math.Vector2;
 import ru.ugame.objects.Board;
 
 import javax.swing.*;
@@ -7,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GamePanel extends JPanel implements ActionListener {
+public class GamePanel extends JPanel implements ActionListener, IUpdatable {
 
     private Board board;
 
@@ -22,41 +23,40 @@ public class GamePanel extends JPanel implements ActionListener {
     private Timer timer;
     private final int DELAY = 25;
 
+    private int grid_scale = 15;
+
     public GamePanel(Board board) {
         this.board = board;
         setBackground(Color.BLACK);
         timer = new Timer(DELAY, this);
         timer.start();
+        board.registerUpdateCallback(this);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        ImageIcon img =  new ImageIcon("src/resources/Woodcutter/Woodcutter.png");
-        g.drawImage(img.getImage(), test_x, test_y, this);
+        g.setColor(new Color(255, 250, 253));
+        g.fillRect(0,0, grid_scale*11, grid_scale);
+        g.fillRect(0,grid_scale, grid_scale, grid_scale*10);
+        g.fillRect(grid_scale*11,0, grid_scale, grid_scale*12);
+        g.fillRect(0,grid_scale*11, grid_scale*12, grid_scale);
+        g.setColor(new Color(156, 200, 90));
+        for(Vector2 v : board.snake) {
+            if(v == board.snake.getFirst()) g.setColor(new Color(255, 255, 0));
+            else g.setColor(new Color(156, 200, 90));
+            g.fillRect((v.x + 1) * grid_scale,(v.y + 1) * grid_scale, grid_scale, grid_scale);
+        }
+        g.setColor(new Color(71, 210, 206));
+        g.fillRect((board.foodPosition.x + 1) * grid_scale,(board.foodPosition.y + 1) * grid_scale, grid_scale, grid_scale);
         Toolkit.getDefaultToolkit().sync();
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { }
 
-        if(x_dir) {
-            if(test_x > WIN_WIDTH  - 3) x_dir = !x_dir;
-            test_x++;
-        } else {
-            if(test_x < 3) x_dir = !x_dir;
-            test_x--;
-        }
-
-        if(y_dir) {
-            if(test_y > WIN_HEIGHT - 3) y_dir = !y_dir;
-            test_y++;
-        } else {
-            if(test_y < 3) y_dir = !y_dir;
-            test_y--;
-        }
-
+    @Override
+    public void update() {
         repaint();
     }
-
 }

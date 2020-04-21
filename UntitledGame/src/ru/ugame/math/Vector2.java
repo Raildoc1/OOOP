@@ -1,10 +1,15 @@
 package ru.ugame.math;
 
 public class Vector2 {
-    public float x = 0f;
-    public float y = 0f;
+    public int x = 0;
+    public int y = 0;
 
-    public Vector2(float x, float y) {
+    public void addVec(Vector2 v) {
+        x += v.x;
+        y += v.y;
+    }
+
+    public Vector2(int x, int y) {
         this.x = x;
         this.y = y;
     }
