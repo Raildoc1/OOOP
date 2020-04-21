@@ -19,7 +19,6 @@ public class View extends JFrame {
 
     public void init() {
         add(new GamePanel(board));
-
         setSize(WIN_WIDTH, WIN_HEIGHT);
         setTitle(APP_NAME);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

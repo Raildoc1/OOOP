@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements ActionListener, IUpdatable {
         }
         g.setColor(new Color(71, 210, 206));
         g.fillRect((board.foodPosition.x + 1) * grid_scale,(board.foodPosition.y + 1) * grid_scale, grid_scale, grid_scale);
+
         Toolkit.getDefaultToolkit().sync();
     }
 
