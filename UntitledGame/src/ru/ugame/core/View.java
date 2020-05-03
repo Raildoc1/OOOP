@@ -24,6 +24,7 @@ public class View extends JFrame {
         setTitle(APP_NAME);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.addKeyListener(new Input(board));
         setLocationRelativeTo(null);
     }
 
