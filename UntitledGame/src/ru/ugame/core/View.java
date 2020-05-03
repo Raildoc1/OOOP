@@ -10,6 +10,7 @@ public class View extends JFrame {
 
     private static final int WIN_WIDTH = 250;
     private static final int WIN_HEIGHT = 350;
+    private static final int GRID_SCALE = 15;
 
     Board board;
 
@@ -18,9 +19,10 @@ public class View extends JFrame {
     }
 
     public void init() {
-        add(new GamePanel(board));
-        setSize(WIN_WIDTH, WIN_HEIGHT);
+        add(new GamePanel(board, GRID_SCALE));
+        setSize((board.getWidth() + 3) * GRID_SCALE, (board.getHeight() + 3) * GRID_SCALE + 22);
         setTitle(APP_NAME);
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }

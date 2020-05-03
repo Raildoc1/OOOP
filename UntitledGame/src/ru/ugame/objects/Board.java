@@ -14,8 +14,8 @@ public class Board {
     private Timer timer;
     private TimerTask timerTask;
 
-    private int width = 10;
-    private int height = 10;
+    private int width = 20;
+    private int height = 15;
 
     private int frameCounter = 0;
     private int deltaTimeMillis;
@@ -33,8 +33,6 @@ public class Board {
         return lost;
     }
 
-    //private GameObject[][] board = new GameObject[width][height];
-    //private List<DefaultBehaviour> defaultBehaviours;
     public Deque<Vector2> snake;
 
     public void start() {
@@ -54,6 +52,7 @@ public class Board {
     }
 
     private void init() {
+        lost = false;
         Random random = new Random();
         Vector2 headPosition = new Vector2(random.nextInt(4) + 3, random.nextInt(4) + 3);
         foodPosition = new Vector2(random.nextInt(4) + 3, random.nextInt(4) + 3);
@@ -64,6 +63,11 @@ public class Board {
 
     private void update() {
         frameCounter++;
+        if(toUpdate != null) {
+            for(IUpdatable updatable : toUpdate){
+                updatable.update();
+            }
+        }
         if(lost)return;
         if(DEBUG_MODE) System.out.println(frameCounter);
         for (Vector2 v : snake) {
@@ -96,12 +100,6 @@ public class Board {
         snake.addFirst(temp);
         snake.removeLast();
 
-        if(toUpdate != null) {
-            for(IUpdatable updatable : toUpdate){
-                updatable.update();
-            }
-        }
-
         lockMovement = false;
 
         if(DEBUG_MODE) {
@@ -128,5 +126,17 @@ public class Board {
     public void registerUpdateCallback(IUpdatable updatable) {
         if (toUpdate == null) toUpdate = new ArrayList<IUpdatable>();
         toUpdate.add(updatable);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void restart() {
+        init();
     }
 }
