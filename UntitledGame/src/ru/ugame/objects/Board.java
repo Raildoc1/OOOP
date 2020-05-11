@@ -14,8 +14,8 @@ public class Board {
     private Timer timer;
     private TimerTask timerTask;
 
-    private int width = 20;
-    private int height = 15;
+    private int width = 30;
+    private int height = 30;
 
     private int frameCounter = 0;
     private int deltaTimeMillis;
@@ -28,12 +28,14 @@ public class Board {
     private boolean newSegmentInstantiated = false;
     private boolean lost = false;
     private boolean lockMovement = false;
+    private int score = 0;
+    private int hScore = 0;
 
     public boolean isLost() {
         return lost;
     }
 
-    public Deque<Vector2> snake;
+    private ArrayDeque<Vector2> snake;
 
     public void start() {
 
@@ -59,6 +61,7 @@ public class Board {
         snake = new ArrayDeque<Vector2>();
         snake.add(headPosition);
         direction = new Vector2(0, 1);
+        score = 0;
     }
 
     private void update() {
@@ -121,6 +124,7 @@ public class Board {
         newSegment = foodPosition;
         Random random = new Random();
         foodPosition = new Vector2(random.nextInt(width), random.nextInt(height));
+        score++;
     }
 
     public void registerUpdateCallback(IUpdatable updatable) {
@@ -136,7 +140,28 @@ public class Board {
         return height;
     }
 
+    public int getSnakeSize() {
+        return snake.size();
+    }
+
+    public Vector2 getSnakeHead() {
+        return snake.getFirst();
+    }
+
+    public ArrayDeque<Vector2> getSnake() {
+        return snake.clone();
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getHighestScore() {
+        return hScore;
+    }
+
     public void restart() {
+        hScore = hScore > score ? hScore : score;
         init();
     }
 }

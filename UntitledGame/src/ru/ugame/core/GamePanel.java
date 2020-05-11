@@ -41,9 +41,8 @@ public class GamePanel extends JPanel implements ActionListener, IUpdatable {
             g.setFont(g.getFont().deriveFont(g.getFont().getSize() / 3f));
             g.drawString("(press any key)", (board.getWidth() + 2) * grid_scale / 2 - 50, (board.getHeight() + 4) * grid_scale / 2 + 20);
             g.setColor(new Color(57, 228, 69));
-            g.drawString("Your score: " + board.snake.size(), (board.getWidth() + 2) * grid_scale / 2 - 50, (board.getHeight() + 4) * grid_scale / 2 + 40);
-            hScore = hScore < board.snake.size() ? board.snake.size() : hScore;
-            g.drawString("Highest: " + hScore, (board.getWidth() + 2) * grid_scale / 2 - 50, (board.getHeight() + 4) * grid_scale / 2 + 60);
+            g.drawString("Your score: " + board.getSnakeSize(), (board.getWidth() + 2) * grid_scale / 2 - 50, (board.getHeight() + 4) * grid_scale / 2 + 40);
+            g.drawString("Highest: " + board.getHighestScore(), (board.getWidth() + 2) * grid_scale / 2 - 50, (board.getHeight() + 4) * grid_scale / 2 + 60);
             return;
         }
 
@@ -53,8 +52,8 @@ public class GamePanel extends JPanel implements ActionListener, IUpdatable {
         g.fillRect(grid_scale*(board.getWidth() + 1),0, grid_scale, grid_scale*(board.getHeight() + 2));
         g.fillRect(0,grid_scale*(board.getHeight() + 1), grid_scale*(board.getWidth() + 2), grid_scale);
         g.setColor(new Color(156, 200, 90));
-        for(Vector2 v : board.snake) {
-            if(v == board.snake.getFirst()) g.setColor(new Color(255, 255, 0));
+        for(Vector2 v : board.getSnake()) {
+            if(v == board.getSnakeHead()) g.setColor(new Color(255, 255, 0));
             else g.setColor(new Color(156, 200, 90));
             g.fillRect((v.x + 1) * grid_scale,(v.y + 1) * grid_scale, grid_scale, grid_scale);
         }
@@ -63,7 +62,7 @@ public class GamePanel extends JPanel implements ActionListener, IUpdatable {
 
         g.setColor(new Color(0, 0, 0));
         g.setFont(g.getFont().deriveFont(g.getFont().getSize() * 1.3f));
-        g.drawString("Score: " + board.snake.size(), 5, 13);
+        g.drawString("Score: " + board.getScore(), 5, 13);
 
         Toolkit.getDefaultToolkit().sync();
     }
