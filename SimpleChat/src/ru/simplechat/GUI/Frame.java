@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Frame extends JFrame {
 
     private static final String APP_NAME = "Simple Chat";
-    private static final int WIN_WIDTH = 250;
+    private static final int WIN_WIDTH = 350;
     private static final int WIN_HEIGHT = 350;
 
     private SChatClient client;
@@ -26,7 +26,10 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         Panel panel = new Panel();
+        TextFieldPanel panel1 = new TextFieldPanel();
+        setLayout(new FlowLayout());
         add(panel);
+        add(panel1);
         client.setToUpdate(panel);
     }
 

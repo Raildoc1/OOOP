@@ -12,15 +12,25 @@ public class Panel extends JPanel implements IUI {
 
     private static final int M_HISTORY_SIZE = 17;
     private JTextArea textArea;
+    private JScrollPane scrollPane;
 
     public Panel() {
         textArea = new JTextArea();
         textArea.setEditable(false);
-        add(textArea);
+
+        scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(300, 250));
+
+        add(scrollPane);
     }
 
     @Override
     public void printMessage(String mess) {
         textArea.append(mess);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        //System.out.println("Updated!");
     }
 }
