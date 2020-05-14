@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 public class SChatClient extends Socket {
 
+    private DataOutputStream oos;
+    private DataInputStream ois;
+
     public ArrayList<Message> messages;
 
     private IUI toUpdate;
@@ -28,10 +31,10 @@ public class SChatClient extends Socket {
 
         System.out.print("Enter nickname: ");
 
-        try(
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            DataOutputStream oos = new DataOutputStream(this.getOutputStream());
-            DataInputStream ois = new DataInputStream(this.getInputStream()); ){
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in));){
+
+            oos = new DataOutputStream(this.getOutputStream());
+            ois = new DataInputStream(this.getInputStream());
 
             while(!this.isOutputShutdown()){
                 if(br.ready()){
@@ -77,6 +80,19 @@ public class SChatClient extends Socket {
 
     public void setToUpdate(IUI toUpdate) {
         this.toUpdate = toUpdate;
+    }
+
+    public void sendMessage(String message) throws IOException {
+        oos.writeUTF(message);
+        oos.flush();
+
+        if(message.equalsIgnoreCase("/quit")){
+            return;
+        }
+
+        String in = ois.readUTF();
+        printlnMessage(in);
+        System.out.println(in);
     }
 
 }

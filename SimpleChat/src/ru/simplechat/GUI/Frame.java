@@ -26,7 +26,7 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         Panel panel = new Panel();
-        TextFieldPanel panel1 = new TextFieldPanel();
+        TextFieldPanel panel1 = new TextFieldPanel(client);
         setLayout(new FlowLayout());
         add(panel);
         add(panel1);
