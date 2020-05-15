@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 public class SChatServer {
 
-    ExecutorService executorService = Executors.newFixedThreadPool(2);
+    ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     private ArrayList<User> users;
     private ArrayList<Message> messages;
