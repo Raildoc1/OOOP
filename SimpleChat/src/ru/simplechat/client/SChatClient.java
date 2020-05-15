@@ -51,6 +51,11 @@ public class SChatClient extends Socket {
                     printlnMessage(in);
                     System.out.println(in);
                 }
+
+                String in = ois.readUTF();
+                printlnMessage(in);
+                System.out.println(in);
+
             }
 
             System.out.println("Closing connections & channels on clentSide - DONE.");
@@ -90,9 +95,9 @@ public class SChatClient extends Socket {
             return;
         }
 
-        String in = ois.readUTF();
-        printlnMessage(in);
-        System.out.println(in);
+        //String in = ois.readUTF();
+        //printlnMessage(in);
+        //System.out.println(in);
     }
 
 }
