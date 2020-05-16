@@ -5,10 +5,14 @@ import ru.simplechat.datatypes.Message;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class SChatClient extends Socket {
+
+    private boolean running = true;
+    public boolean isRunning() {return running;}
 
     private DataOutputStream oos;
     private DataInputStream ois;
@@ -29,6 +33,8 @@ public class SChatClient extends Socket {
 
     public void start(){
 
+        running = true;
+
         System.out.print("Enter nickname: ");
 
         try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in));){
@@ -37,7 +43,7 @@ public class SChatClient extends Socket {
             ois = new DataInputStream(this.getInputStream());
 
             while(!this.isOutputShutdown()){
-                if(br.ready()){
+                /*if(br.ready()){
                     String command = br.readLine();
 
                     oos.writeUTF(command);
@@ -50,13 +56,17 @@ public class SChatClient extends Socket {
                     String in = ois.readUTF();
                     printlnMessage(in);
                     System.out.println(in);
-                }
+                }*/
 
+                if(!running) break;
                 String in = ois.readUTF();
                 printlnMessage(in);
                 System.out.println(in);
 
             }
+
+            if(ois == null) return;
+            if(oos == null) return;
 
             System.out.println("Closing connections & channels on clentSide - DONE.");
             printlnMessage("Closing connections & channels on clentSide - DONE.");
@@ -66,7 +76,6 @@ public class SChatClient extends Socket {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void setMessages(ArrayList<Message> messages) {
@@ -91,13 +100,15 @@ public class SChatClient extends Socket {
         oos.writeUTF(message);
         oos.flush();
 
-        if(message.equalsIgnoreCase("/quit")){
-            return;
-        }
-
         //String in = ois.readUTF();
         //printlnMessage(in);
         //System.out.println(in);
     }
 
+    public void stop() throws IOException {
+        oos.writeUTF("/quit");
+        oos.flush();
+        running = false;
+        this.close();
+    }
 }

@@ -5,6 +5,8 @@ import ru.simplechat.server.SChatServer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class Frame extends JFrame {
@@ -13,10 +15,10 @@ public class Frame extends JFrame {
     private static final int WIN_WIDTH = 350;
     private static final int WIN_HEIGHT = 350;
 
-    private SChatClient client;
+    private static SChatClient client;
 
     public Frame() throws IOException {
-        this.client = new SChatClient("localhost", 3434);
+        Frame.client = new SChatClient("localhost", 3434);
     }
 
     public void init() {
@@ -33,8 +35,11 @@ public class Frame extends JFrame {
         client.setToUpdate(panel);
     }
 
-    public void startClient(){
-        client.start();
+    public static void startClient(){
+        if(client != null)client.start();
+    }
+    public static void closeClient() throws IOException {
+        if(client != null)client.stop();
     }
 
     public static void main(String[] args) throws IOException {
@@ -43,7 +48,17 @@ public class Frame extends JFrame {
             frame.init();
             frame.setVisible(true);
         });
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    closeClient();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                System.exit(0);
+            }
+        });
         frame.startClient();
     }
-
 }

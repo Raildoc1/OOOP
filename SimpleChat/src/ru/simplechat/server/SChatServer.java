@@ -80,6 +80,9 @@ public class SChatServer {
     public void addMessage(String nickname, String message) throws IOException {
         Message tmp = new Message(nickname, message);
         messages.add(tmp);
+        for(MonoThreadClientHandler t: userThreads) {
+            if(!t.isRunning()) userThreads.remove(t);
+        }
         for (MonoThreadClientHandler t: userThreads) {
             t.printMessage(tmp);
         }

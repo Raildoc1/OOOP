@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class MonoThreadClientHandler implements Runnable {
 
+    private boolean running = true;
+    public boolean isRunning() {return running;}
     private SChatServer server;
     private Socket client;
 
@@ -42,23 +44,23 @@ public class MonoThreadClientHandler implements Runnable {
 
                 out.writeUTF("Your nickname is " + nickname);
                 out.flush();
+            } else {
+                running = false;
             }
 
-            while(!client.isClosed()){
-                String entry = in.readUTF();
+            while(client != null || !client.isClosed()){
+                String entry;
+                if(in == null) break;
+                if(in.available() > 0) {
+                    entry = in.readUTF();
+                    server.addMessage(nickname, entry);
 
-                server.addMessage(nickname, entry);
-
-                if(entry.equalsIgnoreCase("/quit")){
-                    System.out.println("Client initialize connections suicide ...");
-                    out.writeUTF("Server reply - " + entry + " - OK");
-                    break;
+                    if(entry.equalsIgnoreCase("/quit")){
+                        System.out.println("Client initialize connections suicide ...");
+                        //out.writeUTF("Server reply - " + entry + " - OK");
+                        break;
+                    }
                 }
-
-                //System.out.println(nickname + ": " + entry);
-                //out.writeUTF(nickname + ": " + entry);
-
-                //out.flush();
             }
 
             System.out.println("Client disconnected");
@@ -70,6 +72,8 @@ public class MonoThreadClientHandler implements Runnable {
             client.close();
 
             System.out.println("Closing connections & channels - DONE.");
+
+            running = false;
 
         } catch (IOException e) {
             e.printStackTrace();
