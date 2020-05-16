@@ -109,6 +109,5 @@ public class SChatClient extends Socket {
         oos.writeUTF("/quit");
         oos.flush();
         running = false;
-        this.close();
     }
 }

@@ -3,6 +3,7 @@ package ru.simplechat.server;
 import ru.simplechat.GUI.IUI;
 import ru.simplechat.client.SChatClient;
 import ru.simplechat.datatypes.Message;
+import ru.simplechat.datatypes.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -48,17 +49,31 @@ public class MonoThreadClientHandler implements Runnable {
                 running = false;
             }
 
-            while(client != null || !client.isClosed()){
+            while(running || client != null || !client.isClosed()){
                 String entry;
                 if(in == null) break;
                 if(in.available() > 0) {
                     entry = in.readUTF();
-                    server.addMessage(nickname, entry);
 
-                    if(entry.equalsIgnoreCase("/quit")){
-                        System.out.println("Client initialize connections suicide ...");
-                        //out.writeUTF("Server reply - " + entry + " - OK");
-                        break;
+                    if(entry.charAt(0) != '/') {
+                        server.addMessage(nickname, entry);
+                    } else {
+                        switch (entry) {
+                            case "/quit":
+                                running = false;
+                                break;
+                            case "/users":
+                                String temp = "";
+                                for(User u : server.getUsers()) {
+                                    temp += u.getNickname() + "\n";
+                                }
+                                out.writeUTF(temp);
+                                break;
+                            default:
+                                System.out.println("Unknown command");
+                                out.writeUTF("Unknown command");
+                                break;
+                        }
                     }
                 }
             }

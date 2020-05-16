@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 public class SChatServer {
 
-    ExecutorService executorService = Executors.newFixedThreadPool(3);
+    ExecutorService executorService = Executors.newFixedThreadPool(255);
 
     private ArrayList<User> users;
     private ArrayList<Message> messages;
@@ -91,5 +91,10 @@ public class SChatServer {
     public ArrayList<Message> getMessages() {
         ArrayList<Message> ms = (ArrayList<Message>)messages.clone();
         return ms;
+    }
+
+    public ArrayList<User> getUsers() {
+        ArrayList<User> us = (ArrayList<User>)users.clone();
+        return us;
     }
 }
