@@ -10,8 +10,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class MonoThreadClientHandler implements Runnable {
+
+    private final Logger logger = Logger.getLogger(SChatServer.class.getName());
 
     private boolean running = true;
     public boolean isRunning() {return running;}
@@ -41,15 +44,21 @@ public class MonoThreadClientHandler implements Runnable {
                 String entry = in.readUTF();
                 nickname = entry;
 
-                server.registerUser(nickname);
+                if(server.isUserRegistered(nickname)) {
+                    server.changeUserOnline(nickname, true);
+                    out.writeUTF("Welcome back, " + nickname + "!");
+                } else {
+                    server.registerUser(nickname);
+                    server.changeUserOnline(nickname, true);
+                    out.writeUTF("You registered as " + nickname);
+                }
 
-                out.writeUTF("Your nickname is " + nickname);
                 out.flush();
             } else {
                 running = false;
             }
 
-            while(running || client != null || !client.isClosed()){
+            while(running && client != null && !client.isClosed()){
                 String entry;
                 if(in == null) break;
                 if(in.available() > 0) {
@@ -63,14 +72,10 @@ public class MonoThreadClientHandler implements Runnable {
                                 running = false;
                                 break;
                             case "/users":
-                                String temp = "";
-                                for(User u : server.getUsers()) {
-                                    temp += u.getNickname() + "\n";
-                                }
-                                out.writeUTF(temp);
+                                out.writeUTF(server.getUsersInfo());
                                 break;
                             default:
-                                System.out.println("Unknown command");
+                                logger.warning("Unknown command");//System.out.println("Unknown command");
                                 out.writeUTF("Unknown command");
                                 break;
                         }
@@ -78,15 +83,13 @@ public class MonoThreadClientHandler implements Runnable {
                 }
             }
 
-            System.out.println("Client disconnected");
-            System.out.println("Closing connections & channels.");
+            logger.info("Client disconnected");
+
+            server.changeUserOnline(nickname, false);
 
             in.close();
             out.close();
-
             client.close();
-
-            System.out.println("Closing connections & channels - DONE.");
 
             running = false;
 

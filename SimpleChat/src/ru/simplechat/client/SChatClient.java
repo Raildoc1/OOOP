@@ -43,33 +43,13 @@ public class SChatClient extends Socket {
             ois = new DataInputStream(this.getInputStream());
 
             while(!this.isOutputShutdown()){
-                /*if(br.ready()){
-                    String command = br.readLine();
-
-                    oos.writeUTF(command);
-                    oos.flush();
-
-                    if(command.equalsIgnoreCase("/quit")){
-                        break;
-                    }
-
+                if(!running) break;
+                if(ois.available() > 0) {
                     String in = ois.readUTF();
                     printlnMessage(in);
                     System.out.println(in);
-                }*/
-
-                if(!running) break;
-                String in = ois.readUTF();
-                printlnMessage(in);
-                System.out.println(in);
-
+                }
             }
-
-            if(ois == null) return;
-            if(oos == null) return;
-
-            System.out.println("Closing connections & channels on clentSide - DONE.");
-            printlnMessage("Closing connections & channels on clentSide - DONE.");
 
         } catch (UnknownHostException e) {
             e.printStackTrace();

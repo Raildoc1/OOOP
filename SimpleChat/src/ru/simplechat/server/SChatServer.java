@@ -14,8 +14,11 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 public class SChatServer {
+
+    private final Logger logger = Logger.getLogger(SChatServer.class.getName());
 
     ExecutorService executorService = Executors.newFixedThreadPool(255);
 
@@ -41,7 +44,9 @@ public class SChatServer {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))
         ) {
 
-            System.out.println("Server socket created");
+            //System.out.println("Server socket created");
+
+            logger.info("Server socket created");
 
             while (!server.isClosed()) {
 
@@ -52,7 +57,8 @@ public class SChatServer {
                 userThreads.add(userThread);
 
                 executorService.execute(userThread);
-                System.out.println("Connection accepted!");
+                //System.out.println("Connection accepted");
+                logger.info("Connection accepted");
             }
 
             executorService.shutdown();
@@ -63,16 +69,33 @@ public class SChatServer {
     }
 
     public void registerUser(String nickname) {
+        if(isUserRegistered(nickname)) {
+            logger.warning("user " + nickname + " is already registered!");
+            return;
+        }
         users.add(new User(nickname));
+        logger.info("user " + nickname + " registered");
+    }
+
+    public boolean isUserRegistered (String nickname) {
+        for(User u : users) {
+            if(u.getNickname().equals(nickname)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void changeUserOnline(String nickname, boolean online) {
         for(User u : users){
-            if(u.getNickname() == nickname){
+            if(u.getNickname().equals(nickname)){
                 u.setOnline(online);
+                if(online) logger.info(nickname + " is now online");
+                else logger.info(nickname + " is now offline");
                 return;
             }
         }
+        logger.warning("Checking online of unregistered user!");
         System.out.println("User " + nickname + " not registered!");
         // Log "user not found"
     }
@@ -96,5 +119,15 @@ public class SChatServer {
     public ArrayList<User> getUsers() {
         ArrayList<User> us = (ArrayList<User>)users.clone();
         return us;
+    }
+
+    public String getUsersInfo() {
+        String info = "";
+        for(User u : users) {
+            info += u.getNickname();
+            info += " - ";
+            info += (u.isOnline() ? "online" : "offline") + "\n";
+        }
+        return info;
     }
 }
