@@ -21,7 +21,7 @@ public class Storage<T> {
 
     public void add(T item) throws InterruptedException {
         synchronized (this) {
-            if(items.size() >= size) {
+            while(items.size() >= size) {
                 this.wait();
             }
             items.add(item);
@@ -32,7 +32,7 @@ public class Storage<T> {
 
     public T pop() throws InterruptedException {
         synchronized (this){
-            while (items.size() == 0){
+            while(items.size() == 0){
                 this.wait();
             }
             T detail = items.pop();

@@ -14,15 +14,6 @@ public class StorageController implements IStorageController {
         this.factory = factory;
     }
 
-    /*@Override
-    public void run() {
-        while(!isInterrupted()) {
-            for(int i = factory.getCarAmount(); i < carStorage.getSize(); i++) {
-                workersExecutorService.submit(factory.getNewTask());
-            }
-        }
-    }*/
-
     @Override
     public void OnStorageUpdate() {
         for(int i = factory.getCarAmount(); i < carStorage.getSize(); i++) {
