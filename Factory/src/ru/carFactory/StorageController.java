@@ -2,7 +2,7 @@ package ru.carFactory;
 
 import java.util.concurrent.ExecutorService;
 
-public class StorageController extends Thread implements Runnable {
+public class StorageController implements IStorageController {
 
     private Storage<Car> carStorage;
     private ExecutorService workersExecutorService;
@@ -14,13 +14,19 @@ public class StorageController extends Thread implements Runnable {
         this.factory = factory;
     }
 
-    @Override
+    /*@Override
     public void run() {
         while(!isInterrupted()) {
             for(int i = factory.getCarAmount(); i < carStorage.getSize(); i++) {
                 workersExecutorService.submit(factory.getNewTask());
             }
         }
-    }
+    }*/
 
+    @Override
+    public void OnStorageUpdate() {
+        for(int i = factory.getCarAmount(); i < carStorage.getSize(); i++) {
+            workersExecutorService.submit(factory.getNewTask());
+        }
+    }
 }

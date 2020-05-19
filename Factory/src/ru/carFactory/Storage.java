@@ -7,10 +7,16 @@ public class Storage<T> {
 
     private int size;
     private LinkedList<T> items;
+    private IStorageController toUpdate;
 
     public Storage(int size) {
         items = new LinkedList<T>();
         this.size = size;
+        this.toUpdate = null;
+    }
+
+    public void addToUpdate(IStorageController controller) {
+        this.toUpdate = controller;
     }
 
     public void add(T item) throws InterruptedException {
@@ -19,6 +25,7 @@ public class Storage<T> {
                 this.wait();
             }
             items.add(item);
+            if(toUpdate != null)toUpdate.OnStorageUpdate();
             notify();
         }
     }
@@ -30,6 +37,7 @@ public class Storage<T> {
             }
             T detail = items.pop();
             notify();
+            if(toUpdate != null)toUpdate.OnStorageUpdate();
             return detail;
         }
     }

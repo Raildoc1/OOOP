@@ -75,27 +75,21 @@ public class Factory {
         for(int i = 0; i < dealersAmount; i++) {
             dealers.add(new Dealer(this, dealerDeltaTime));
         }
-        workersExecutorService = Executors.newFixedThreadPool(workersAmount);
-        dealersExecutorService = Executors.newFixedThreadPool(dealersAmount);
-        suppliersExecutorService = Executors.newFixedThreadPool(accessorySuppliersAmount + 2);
         storageControllerExecutorService = Executors.newSingleThreadExecutor();
     }
 
     public void run() {
-        suppliersExecutorService.submit(engineSupplier);
-        suppliersExecutorService.submit(bodySupplier);
+        engineSupplier.start();
+        bodySupplier.start();
         for(Supplier<Accessory> s : accessorySuppliers) {
-            suppliersExecutorService.submit(s);
+            s.start();
         }
         for(Dealer d : dealers) {
-            dealersExecutorService.submit(d);
+            d.start();
         }
-        storageControllerExecutorService.submit(new StorageController(carStorage, workersExecutorService, this));
-    }
+        carStorage.addToUpdate(new StorageController(carStorage, workersExecutorService, this));
+        //storageControllerExecutorService.submit(new StorageController(carStorage, workersExecutorService, this));
 
-    public static void main(String[] args) throws IOException {
-        Factory factory = new Factory();
-        factory.run();
     }
 
     public Storage<Engine> getEngineStorage() {
