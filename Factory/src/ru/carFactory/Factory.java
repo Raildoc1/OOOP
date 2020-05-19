@@ -76,6 +76,7 @@ public class Factory {
             dealers.add(new Dealer(this, dealerDeltaTime));
         }
         storageControllerExecutorService = Executors.newSingleThreadExecutor();
+        workersExecutorService = Executors.newFixedThreadPool(workersAmount);
     }
 
     public void run() {
@@ -87,7 +88,9 @@ public class Factory {
         for(Dealer d : dealers) {
             d.start();
         }
-        carStorage.addToUpdate(new StorageController(carStorage, workersExecutorService, this));
+        StorageController controller = new StorageController(carStorage, workersExecutorService, this);
+        carStorage.addToUpdate(controller);
+        controller.OnStorageUpdate();
         //storageControllerExecutorService.submit(new StorageController(carStorage, workersExecutorService, this));
 
     }
