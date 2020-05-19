@@ -22,7 +22,7 @@ public class Task extends Thread {
             Car car = new Car(factory.getEngineStorage().pop(), factory.getBodyStorage().pop(), factory.getAccessoryStorage().pop());
             factory.getCarStorage().add(car);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            return;
         }
     }
 }

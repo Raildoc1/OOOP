@@ -9,10 +9,7 @@ import java.awt.image.AreaAveragingScaleFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 
 public class Factory {
 
@@ -75,7 +72,6 @@ public class Factory {
         for(int i = 0; i < dealersAmount; i++) {
             dealers.add(new Dealer(this, dealerDeltaTime));
         }
-        storageControllerExecutorService = Executors.newSingleThreadExecutor();
         workersExecutorService = Executors.newFixedThreadPool(workersAmount);
     }
 
@@ -95,17 +91,21 @@ public class Factory {
 
     }
 
-    public void stop() {
+    public void stop() throws InterruptedException {
         for(Supplier<Accessory> s : accessorySuppliers) {
             s.interrupt();
+            s.join();
         }
         for(Dealer d : dealers) {
             d.interrupt();
+            d.join();
         }
         engineSupplier.interrupt();
+        engineSupplier.join();
         bodySupplier.interrupt();
-        storageControllerExecutorService.shutdown();
-        workersExecutorService.shutdown();
+        bodySupplier.join();
+        workersExecutorService.shutdownNow();
+        workersExecutorService.awaitTermination(60, TimeUnit.SECONDS);
     }
 
     public Storage<Engine> getEngineStorage() {
