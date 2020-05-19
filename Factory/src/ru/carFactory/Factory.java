@@ -95,6 +95,19 @@ public class Factory {
 
     }
 
+    public void stop() {
+        for(Supplier<Accessory> s : accessorySuppliers) {
+            s.interrupt();
+        }
+        for(Dealer d : dealers) {
+            d.interrupt();
+        }
+        engineSupplier.interrupt();
+        bodySupplier.interrupt();
+        storageControllerExecutorService.shutdown();
+        workersExecutorService.shutdown();
+    }
+
     public Storage<Engine> getEngineStorage() {
         return engineStorage;
     }
