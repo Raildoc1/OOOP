@@ -86,6 +86,15 @@ public class SChatServer {
         return false;
     }
 
+    public boolean isUserOnline (String nickname) {
+        for(User u : users) {
+            if(u.getNickname().equals(nickname)) {
+                return u.isOnline();
+            }
+        }
+        return false;
+    }
+
     public void changeUserOnline(String nickname, boolean online) {
         for(User u : users){
             if(u.getNickname().equals(nickname)){

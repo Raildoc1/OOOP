@@ -40,23 +40,32 @@ public class MonoThreadClientHandler implements Runnable {
             out = new DataOutputStream(client.getOutputStream());
             in = new DataInputStream(client.getInputStream());
 
-            if(!client.isClosed()) {
-                String entry = in.readUTF();
-                nickname = entry;
+            while (nickname == null && running) {
+                if(!client.isClosed()) {
+                    String entry = in.readUTF();
+                    nickname = entry;
 
-                if(server.isUserRegistered(nickname)) {
-                    server.changeUserOnline(nickname, true);
-                    out.writeUTF("Welcome back, " + nickname + "!");
+                    if(server.isUserRegistered(nickname)) {
+
+                        if(server.isUserOnline(nickname)) {
+                            out.writeUTF("Nickname " + nickname + " is already taken! Try another one.");
+                            nickname = null;
+                        } else {
+                            server.changeUserOnline(nickname, true);
+                            out.writeUTF("Welcome back, " + nickname + "!");
+                        }
+                    } else {
+                        server.registerUser(nickname);
+                        server.changeUserOnline(nickname, true);
+                        out.writeUTF("You registered as " + nickname);
+                    }
+
+                    out.flush();
                 } else {
-                    server.registerUser(nickname);
-                    server.changeUserOnline(nickname, true);
-                    out.writeUTF("You registered as " + nickname);
+                    running = false;
                 }
-
-                out.flush();
-            } else {
-                running = false;
             }
+
 
             while(running && client != null && !client.isClosed()){
                 String entry;

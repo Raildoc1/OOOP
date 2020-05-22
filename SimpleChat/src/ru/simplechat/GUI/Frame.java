@@ -18,11 +18,11 @@ public class Frame extends JFrame {
     private static final int WIN_HEIGHT = 350;
     private static SChatClient client;
 
-    public Frame() throws IOException {
+    /*public Frame() throws IOException {
         try{
             Frame.client = new SChatClient("localhost", 3434);
-        } catch (Exception e) { /*IGNORE*/ }
-    }
+        } catch (Exception e) { IGNORE }
+    }*/
 
     public void init() {
         setSize(WIN_WIDTH, WIN_HEIGHT);
@@ -41,6 +41,7 @@ public class Frame extends JFrame {
             client.setToUpdate(panel);
             startClient();
             panel.printMessage("Connected!\n");
+            return;
         }
         else {
             panel.printMessage("Connecting to server...\n");
@@ -63,7 +64,7 @@ public class Frame extends JFrame {
             };
             timer.schedule(timerTask, 0, 1000);
         }
-        //System.out.println("End init!");
+        System.out.println("End init!");
     }
 
     public static void startClient(){
@@ -91,8 +92,6 @@ public class Frame extends JFrame {
                 System.exit(0);
             }
         });
-        //frame.startClient();
-        //System.out.println("startClient()");
     }
 
     public void createClient() throws NullPointerException, IOException {
