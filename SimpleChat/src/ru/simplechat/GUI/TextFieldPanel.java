@@ -13,9 +13,13 @@ public class TextFieldPanel extends JPanel implements ActionListener {
     private JTextField textField;
     private JButton sendButton;
     private SChatClient client;
+    private Panel textPanel;
+    private Frame frame;
 
-    public TextFieldPanel(SChatClient client) {
+    public TextFieldPanel(SChatClient client, Panel textPanel, Frame frame) {
         this.client = client;
+        this.textPanel = textPanel;
+        this.frame = frame;
         textField = new JTextField();
         textField.setPreferredSize(new Dimension(200, 20));
         sendButton = new JButton();
@@ -35,7 +39,13 @@ public class TextFieldPanel extends JPanel implements ActionListener {
             if(textField.getText().isEmpty()) return;
             client.sendMessage(textField.getText());
         } catch (IOException ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
+            textPanel.printMessage("Can't reach server!");
+            try {
+                client = null;
+                frame.restart();
+            } catch (IOException exc) { /*IGNORE*/ }
+            return;
         }
         textField.setText("");
     }

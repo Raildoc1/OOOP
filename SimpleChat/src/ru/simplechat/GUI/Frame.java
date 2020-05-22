@@ -18,6 +18,9 @@ public class Frame extends JFrame {
     private static final int WIN_HEIGHT = 350;
     private static SChatClient client;
 
+    private static Panel panel;
+    private static TextFieldPanel panel1;
+
     /*public Frame() throws IOException {
         try{
             Frame.client = new SChatClient("localhost", 3434);
@@ -30,8 +33,8 @@ public class Frame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        Panel panel = new Panel();
-        TextFieldPanel panel1 = new TextFieldPanel(client);
+        panel = new Panel();
+        panel1 = new TextFieldPanel(client, panel, this);
         setLayout(new FlowLayout());
         add(panel);
         add(panel1);
@@ -94,8 +97,26 @@ public class Frame extends JFrame {
         });
     }
 
-    public void createClient() throws NullPointerException, IOException {
-        Frame.client = new SChatClient("localhost", 3434);
-        startClient();
+    public void restart() throws IOException {
+        client = null;
+        panel.printMessage("Connecting to server...\n");
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try{
+                    Frame.client = new SChatClient("localhost", 3434);
+                } catch (Exception e) { /*IGNORE*/ }
+                if(client != null) {
+                    timer.cancel();
+                    panel.printMessage("Connected!\n");
+                    panel1.addClient(client);
+                    client.setToUpdate(panel);
+                    startClient();
+                    return;
+                }
+            }
+        };
+        timer.schedule(timerTask, 0, 1000);
     }
 }
