@@ -22,6 +22,8 @@ public class Panel extends JPanel implements IUI {
         scrollPane.setPreferredSize(new Dimension(300, 250));
 
         add(scrollPane);
+
+        textArea.append("Connecting to server...\n");
     }
 
     @Override

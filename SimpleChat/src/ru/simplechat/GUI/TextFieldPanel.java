@@ -10,9 +10,9 @@ import java.io.IOException;
 
 public class TextFieldPanel extends JPanel implements ActionListener {
 
-    JTextField textField;
-    JButton sendButton;
-    SChatClient client;
+    private JTextField textField;
+    private JButton sendButton;
+    private SChatClient client;
 
     public TextFieldPanel(SChatClient client) {
         this.client = client;
@@ -30,11 +30,17 @@ public class TextFieldPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(client == null) return;
         try {
+            if(textField.getText().isEmpty()) return;
             client.sendMessage(textField.getText());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         textField.setText("");
+    }
+
+    public void addClient(SChatClient client) {
+        this.client = client;
     }
 }

@@ -8,17 +8,20 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.*;
+import java.util.Timer;
 
 public class Frame extends JFrame {
 
     private static final String APP_NAME = "Simple Chat";
     private static final int WIN_WIDTH = 350;
     private static final int WIN_HEIGHT = 350;
-
     private static SChatClient client;
 
     public Frame() throws IOException {
-        Frame.client = new SChatClient("localhost", 3434);
+        try{
+            Frame.client = new SChatClient("localhost", 3434);
+        } catch (Exception e) { /*IGNORE*/ }
     }
 
     public void init() {
@@ -32,7 +35,35 @@ public class Frame extends JFrame {
         setLayout(new FlowLayout());
         add(panel);
         add(panel1);
-        client.setToUpdate(panel);
+        setVisible(true);
+
+        if(client != null){
+            client.setToUpdate(panel);
+            startClient();
+            panel.printMessage("Connected!\n");
+        }
+        else {
+            panel.printMessage("Connecting to server...\n");
+            Timer timer = new Timer();
+            TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    try{
+                        Frame.client = new SChatClient("localhost", 3434);
+                    } catch (Exception e) { /*IGNORE*/ }
+                    if(client != null) {
+                        timer.cancel();
+                        panel.printMessage("Connected!\n");
+                        panel1.addClient(client);
+                        client.setToUpdate(panel);
+                        startClient();
+                        return;
+                    }
+                }
+            };
+            timer.schedule(timerTask, 0, 1000);
+        }
+        //System.out.println("End init!");
     }
 
     public static void startClient(){
@@ -48,6 +79,7 @@ public class Frame extends JFrame {
             frame.init();
             frame.setVisible(true);
         });
+
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -59,6 +91,12 @@ public class Frame extends JFrame {
                 System.exit(0);
             }
         });
-        frame.startClient();
+        //frame.startClient();
+        //System.out.println("startClient()");
+    }
+
+    public void createClient() throws NullPointerException, IOException {
+        Frame.client = new SChatClient("localhost", 3434);
+        startClient();
     }
 }

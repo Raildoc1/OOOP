@@ -63,7 +63,6 @@ public class MonoThreadClientHandler implements Runnable {
                 if(in == null) break;
                 if(in.available() > 0) {
                     entry = in.readUTF();
-
                     if(entry.charAt(0) != '/') {
                         server.addMessage(nickname, entry);
                     } else {
@@ -100,12 +99,14 @@ public class MonoThreadClientHandler implements Runnable {
     }
 
     public void printMessage(Message message) throws IOException {
-        System.out.println(message.toString());
+        //System.out.println(message.toString());
         try {
             out.writeUTF(message.toString());
             out.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            running = false;
+            return;
         }
     }
 }
