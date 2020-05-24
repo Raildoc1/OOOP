@@ -51,9 +51,11 @@ public class SChatClient extends Socket {
                 System.out.println(in);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             printMessage("Server unavailable retrying...\n");
-            if(toRestart != null)toRestart.restart();
+            if(toRestart != null && running)toRestart.restart();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

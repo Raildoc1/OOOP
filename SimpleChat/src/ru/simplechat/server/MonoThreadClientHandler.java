@@ -45,6 +45,11 @@ public class MonoThreadClientHandler implements Runnable {
                     String entry = in.readUTF();
                     nickname = entry;
 
+                    if(nickname.equalsIgnoreCase("/quit")) {
+                        running = false;
+                        break;
+                    }
+
                     if(server.isUserRegistered(nickname)) {
 
                         if(server.isUserOnline(nickname)) {
@@ -97,7 +102,7 @@ public class MonoThreadClientHandler implements Runnable {
 
             logger.info("Client disconnected");
 
-            server.changeUserOnline(nickname, false);
+            if(!nickname.equalsIgnoreCase("/quit"))server.changeUserOnline(nickname, false);
 
             in.close();
             out.close();
