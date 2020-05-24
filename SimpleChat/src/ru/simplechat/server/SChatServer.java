@@ -4,13 +4,17 @@ import ru.simplechat.client.SChatClient;
 import ru.simplechat.datatypes.Message;
 import ru.simplechat.datatypes.User;
 
+import javax.swing.text.html.HTMLDocument;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -112,7 +116,27 @@ public class SChatServer {
     public void addMessage(String nickname, String message) throws IOException {
         Message tmp = new Message(nickname, message);
         messages.add(tmp);
-        for(MonoThreadClientHandler t: userThreads) {
+
+        Iterator<MonoThreadClientHandler> iterator;
+
+        try{
+            iterator = userThreads.listIterator();
+            while(iterator.hasNext()) {
+                if(iterator.next() == null) iterator.remove();
+            }
+            iterator = userThreads.listIterator();
+            while(iterator.hasNext()) {
+                if(!iterator.next().isRunning()) iterator.remove();
+            }
+            iterator = userThreads.listIterator();
+            while(iterator.hasNext()) {
+                iterator.next().printMessage(tmp);
+            }
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+
+        /*for(MonoThreadClientHandler t: userThreads) {
             if(t == null) {
                 userThreads.remove(t);
                 continue;
@@ -121,7 +145,7 @@ public class SChatServer {
         }
         for (MonoThreadClientHandler t: userThreads) {
             t.printMessage(tmp);
-        }
+        }*/
     }
 
     public ArrayList<Message> getMessages() {
