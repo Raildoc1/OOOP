@@ -70,7 +70,7 @@ public class MonoThreadClientHandler implements Runnable {
             while(running && client != null && !client.isClosed()){
                 String entry;
                 if(in == null) break;
-                if(in.available() > 0) {
+                try {
                     entry = in.readUTF();
                     if(entry.charAt(0) != '/') {
                         server.addMessage(nickname, entry);
@@ -87,7 +87,11 @@ public class MonoThreadClientHandler implements Runnable {
                                 out.writeUTF("Unknown command");
                                 break;
                         }
+                        server.updateServer();
                     }
+                } catch (Exception e) {
+                    running = false;
+                    server.updateServer();
                 }
             }
 
@@ -101,8 +105,10 @@ public class MonoThreadClientHandler implements Runnable {
 
             running = false;
 
+            server.updateServer();
         } catch (IOException e) {
             running = false;
+            server.updateServer();
             return;
         }
 

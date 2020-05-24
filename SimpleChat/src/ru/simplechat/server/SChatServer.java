@@ -113,6 +113,22 @@ public class SChatServer {
         // Log "user not found"
     }
 
+    public void updateServer() {
+        Iterator<MonoThreadClientHandler> iterator;
+        try{
+            iterator = userThreads.listIterator();
+            while(iterator.hasNext()) {
+                if(iterator.next() == null) iterator.remove();
+            }
+            iterator = userThreads.listIterator();
+            while(iterator.hasNext()) {
+                if(!iterator.next().isRunning()) iterator.remove();
+            }
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addMessage(String nickname, String message) throws IOException {
         Message tmp = new Message(nickname, message);
         messages.add(tmp);
