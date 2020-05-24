@@ -13,8 +13,9 @@ public class Panel extends JPanel implements IUI {
     private static final int M_HISTORY_SIZE = 17;
     private JTextArea textArea;
     private JScrollPane scrollPane;
+    private Frame frame;
 
-    public Panel() {
+    public Panel(Frame frame) {
         textArea = new JTextArea();
         textArea.setEditable(false);
 

@@ -21,19 +21,13 @@ public class Frame extends JFrame {
     private static Panel panel;
     private static TextFieldPanel panel1;
 
-    /*public Frame() throws IOException {
-        try{
-            Frame.client = new SChatClient("localhost", 3434);
-        } catch (Exception e) { IGNORE }
-    }*/
-
     public void init() {
         setSize(WIN_WIDTH, WIN_HEIGHT);
         setTitle(APP_NAME);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        panel = new Panel();
+        panel = new Panel(this);
         panel1 = new TextFieldPanel(client, panel, this);
         setLayout(new FlowLayout());
         add(panel);
@@ -60,6 +54,7 @@ public class Frame extends JFrame {
                         panel.printMessage("Connected!\n");
                         panel1.addClient(client);
                         client.setToUpdate(panel);
+                        client.setToRestart(panel1);
                         startClient();
                         return;
                     }
@@ -112,6 +107,7 @@ public class Frame extends JFrame {
                     panel.printMessage("Connected!\n");
                     panel1.addClient(client);
                     client.setToUpdate(panel);
+                    client.setToRestart(panel1);
                     startClient();
                     return;
                 }

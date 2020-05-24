@@ -1,5 +1,6 @@
 package ru.simplechat.client;
 
+import ru.simplechat.GUI.IRestartable;
 import ru.simplechat.GUI.IUI;
 import ru.simplechat.datatypes.Message;
 
@@ -20,6 +21,7 @@ public class SChatClient extends Socket {
     public ArrayList<Message> messages;
 
     private IUI toUpdate;
+    private IRestartable toRestart;
 
     public static void main(String[] args) throws IOException {
         SChatClient client = new SChatClient("localhost", 3434);
@@ -44,17 +46,14 @@ public class SChatClient extends Socket {
 
             while(!this.isOutputShutdown()){
                 if(!running) break;
-                if(ois.available() > 0) {
-                    String in = ois.readUTF();
-                    printlnMessage(in);
-                    System.out.println(in);
-                }
+                String in = ois.readUTF();
+                printlnMessage(in);
+                System.out.println(in);
             }
 
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            printMessage("Server unavailable retrying...\n");
+            if(toRestart != null)toRestart.restart();
         }
     }
 
@@ -74,6 +73,10 @@ public class SChatClient extends Socket {
 
     public void setToUpdate(IUI toUpdate) {
         this.toUpdate = toUpdate;
+    }
+
+    public void setToRestart(IRestartable toRestart) {
+        this.toRestart = toRestart;
     }
 
     public void sendMessage(String message) throws IOException {

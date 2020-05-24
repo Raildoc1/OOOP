@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class TextFieldPanel extends JPanel implements ActionListener {
+public class TextFieldPanel extends JPanel implements ActionListener, IRestartable {
 
     private JTextField textField;
     private JButton sendButton;
@@ -40,7 +40,7 @@ public class TextFieldPanel extends JPanel implements ActionListener {
             client.sendMessage(textField.getText());
         } catch (IOException ex) {
             //ex.printStackTrace();
-            textPanel.printMessage("Can't reach server!");
+            textPanel.printMessage("Can't reach server!\n");
             try {
                 client = null;
                 frame.restart();
@@ -52,5 +52,14 @@ public class TextFieldPanel extends JPanel implements ActionListener {
 
     public void addClient(SChatClient client) {
         this.client = client;
+    }
+
+    @Override
+    public void restart() {
+        try {
+            client = null;
+            frame.restart();
+        } catch (IOException exc) { /*IGNORE*/ }
+        return;
     }
 }
