@@ -102,7 +102,8 @@ public class MonoThreadClientHandler implements Runnable {
             running = false;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            running = false;
+            return;
         }
 
     }

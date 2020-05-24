@@ -113,6 +113,10 @@ public class SChatServer {
         Message tmp = new Message(nickname, message);
         messages.add(tmp);
         for(MonoThreadClientHandler t: userThreads) {
+            if(t == null) {
+                userThreads.remove(t);
+                continue;
+            }
             if(!t.isRunning()) userThreads.remove(t);
         }
         for (MonoThreadClientHandler t: userThreads) {
