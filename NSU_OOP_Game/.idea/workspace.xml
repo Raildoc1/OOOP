@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2933bd62-23aa-4d24-b52d-cd40041789a3" name="Default Changelist" comment="" />
+    <list default="true" id="2933bd62-23aa-4d24-b52d-cd40041789a3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/WEB_LAB_1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/src/lab1/Receiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/src/lab1/Sender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/src/lab1/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
