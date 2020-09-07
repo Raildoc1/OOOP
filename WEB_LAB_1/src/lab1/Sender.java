@@ -8,6 +8,8 @@ public class Sender {
     private InetAddress group;
     private byte[]buf;
 
+    private boolean connected;
+
     public void multicast(String multicastMessage) throws IOException, SocketException, UnknownHostException {
         socket = new DatagramSocket();
         group = InetAddress.getByName("230.0.0.0");
@@ -19,7 +21,9 @@ public class Sender {
         long deltaTime = 0;
         long delay = 3000;
 
-        while(System.currentTimeMillis() - start < 30000) {
+        connected = true;
+
+        while(connected) {
 
             deltaTime = System.currentTimeMillis() - prevTime;
             prevTime = System.currentTimeMillis();
@@ -33,5 +37,9 @@ public class Sender {
         }
 
         socket.close();
+    }
+
+    public void disconnect () {
+        connected = false;
     }
 }

@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2933bd62-23aa-4d24-b52d-cd40041789a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/WEB_LAB_1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/src/lab1/Receiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/src/lab1/Sender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WEB_LAB_1/src/lab1/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WEB_LAB_1/out/production/WEB_LAB_1/lab1/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../WEB_LAB_1/out/production/WEB_LAB_1/lab1/main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,29 +65,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1585772510673">
+    <state x="668" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1599449576620">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1585772510673" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1585772510673">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1585772510673" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1585772510673">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1585772510673" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1585772510673">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1585772510673" />
-    <state x="668" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1584275924558">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="668" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584275924558" />
-    <state x="690" y="303" key="extract.method.dialog" timestamp="1583334755789">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="690" y="303" key="extract.method.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583334755789" />
+    <state x="668" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1599449576620" />
   </component>
 </project>
