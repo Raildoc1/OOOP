@@ -1,24 +1,27 @@
 package lab1;
 
 import java.io.IOException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Scanner;
 
 public class main {
 
     public static void main(String[] args) {
-
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-
-        Sender sender = new Sender();
-        Receiver receiver = new Receiver();
-
         try {
+        Sender sender = new Sender("hello");
+        Receiver receiver = new Receiver();
+        Scanner sc = new Scanner(System.in);
 
-            executorService.execute(receiver);
-            sender.multicast("ip + port");
-            executorService.shutdown();
+            while(true) {
+                sender.iteration();
+                receiver.iteration();
+                if(System.in.available() != 0) {
+                    String s = sc.nextLine();
+                    if(s.equals("stop")) break;
+                }
+            }
+
+            sender.close();
+            receiver.close();
 
         } catch (IOException e) {
             e.printStackTrace();

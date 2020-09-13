@@ -4,88 +4,99 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
-public class Receiver extends Thread {
+public class Receiver {
     protected MulticastSocket socket = null;
     protected byte[]buf = new byte[256];
 
     private ArrayList<client> clients = new ArrayList<client>();
 
-    public void run() {
-        try {
-            socket = new MulticastSocket(4446);
-            InetAddress group = InetAddress.getByName("230.0.0.0");
-            socket.joinGroup(group);
+    InetAddress group;
 
-            long prevTime = System.currentTimeMillis();
-            long deltaTime = 0;
-            long timer = 0;
+    long prevTime;
+    long deltaTime;
+    long timer;
 
-            while (true) {
-                deltaTime = System.currentTimeMillis() - prevTime;
-                prevTime = System.currentTimeMillis();
+    public Receiver() throws IOException {
+        socket = new MulticastSocket(4446);
+        group = InetAddress.getByName("230.0.0.0");
+        socket.joinGroup(group);
 
-                for (client c : clients) {
-                    c.increment_time(deltaTime);
-                    if(c.getTime_millis() > 10000) clients.remove(c);
-                }
+        prevTime = System.currentTimeMillis();
+        deltaTime = 0;
+        timer = 0;
+    }
 
-                DatagramPacket packet = new DatagramPacket(buf, buf.length);
-                socket.receive(packet);
-                String received = new String(packet.getData(), 0, packet.getLength());
+    public void iteration() throws IOException {
 
-                boolean client_found = false;
+        deltaTime = System.currentTimeMillis() - prevTime;
+        prevTime = System.currentTimeMillis();
 
-                for (client c : clients) {
-                    if(c.getName().equals(packet.getSocketAddress().toString())) {
-                        client_found = true;
-                        c.reset_timer();
-                        break;
-                    }
-                }
-
-                if(!client_found) {
-                    clients.add(new client(packet.getSocketAddress().toString()));
-                }
-
-                //System.out.println(packet.getSocketAddress());
-
-                timer -= deltaTime;
-
-                if(timer < 0){
-                    timer = 3000;
-
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-
-                    for (client c: clients) {
-                        System.out.println(c.name);
-                    }
-                }
-
-                if ("end".equals(received)) {
-                break;
-            }
+        for (client c : clients) {
+            c.increment_time(deltaTime);
+            if(c.getTime_millis() > 10000) c.isOnline = false;
         }
-        socket.leaveGroup(group);
-        socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        DatagramPacket packet = new DatagramPacket(buf, buf.length);
+        try{
+            socket.setSoTimeout(1000);
+            socket.receive(packet);
+
+
+            String received = new String(packet.getData(), 0, packet.getLength());
+
+            boolean client_found = false;
+
+            for (client c : clients) {
+                if(c.getName().equals(packet.getSocketAddress().toString())) {
+                    client_found = true;
+                    c.reset_timer();
+                    c.isOnline = true;
+                    break;
+                }
+            }
+
+            if(!client_found) {
+                clients.add(new client(packet.getSocketAddress().toString()));
+            }
+
+        } catch (SocketTimeoutException e){}
+
+        //System.out.println(packet.getSocketAddress());
+
+        timer -= deltaTime;
+
+        if(timer < 0){
+            timer = 3000;
+
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+
+            for (client c: clients) {
+                if(c.isOnline) System.out.println(c.name);
+            }
         }
     }
 
-
+    public void close() throws IOException {
+        socket.leaveGroup(group);
+        socket.close();
+    }
 
     private class client {
         private String name;
         private long time_millis = 0;
+
+        private boolean isOnline;
 
         public String getName() {return name;}
         public long getTime_millis() {return time_millis;}
 
         public client(String name) {
             this.name = name;
+            isOnline = true;
         }
 
         public void increment_time(long delta_time_millis) {
